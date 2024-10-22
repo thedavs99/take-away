@@ -18,7 +18,19 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="prose">
+    <h1><%= link_to 'Pá Levar', root_path %></h1>
+    <nav>
+      <% if admin_signed_in? %>
+        <p> <%= current_admin.name %> <%= current_admin.last_name %> - <%= current_admin.email %>
+        <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
+      <% else %>
+        <%= link_to 'Entrar', new_admin_session_path %>
+      <% end%>
+    </nav>
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+    
     <main class="container mx-auto mt-28 px-5 flex">
       <%= yield %>
     </main>

@@ -1,0 +1,25 @@
+require 'rails_helper'
+
+describe 'Usuario se cadastra' do
+  it 'com sucesso' do
+    # Arrange
+    # Act
+    visit root_path
+    click_on 'Entrar'
+    click_on 'Crie sua conta!'
+    fill_in 'Nome', with: 'David'
+    fill_in 'Sobrenome', with: 'Martinez'
+    fill_in 'CPF', with: '12223111190'
+    fill_in 'E-mail', with: 'david@email.com'
+    fill_in 'Senha', with: '123456789123'
+    fill_in 'Confirme sua senha', with: '123456789123'
+    click_on 'Criar conta'
+
+    # Assert
+    expect(page).to have_content 'Boas vindas! Você realizou seu registro com sucesso.'
+    expect(page).to have_content 'david@email.com'
+    expect(page).to have_button 'Sair'
+    admin = Admin.last
+    expect(admin.name).to eq 'David'
+  end
+end
