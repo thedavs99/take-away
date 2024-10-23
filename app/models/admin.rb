@@ -12,6 +12,9 @@ class Admin < ApplicationRecord
 
   after_create :register_as_an_owner
 
+
+  has_one :restaurant
+
   private
   def cpf_validation
     unless CPF.valid?(cpf)
