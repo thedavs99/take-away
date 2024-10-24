@@ -7,7 +7,7 @@ class Admin < ApplicationRecord
          :recoverable, :rememberable, :validatable
   
   validates :name, :last_name, :cpf, presence: true
-  validate :cpf_validation
+  validate :cpf_is_valid?
   validates :cpf, uniqueness: true
 
   after_create :register_as_an_owner
@@ -16,7 +16,7 @@ class Admin < ApplicationRecord
   has_one :restaurant
 
   private
-  def cpf_validation
+  def cpf_is_valid?
     unless CPF.valid?(cpf)
       errors.add(:cpf, 'não é válido')
     end

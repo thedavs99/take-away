@@ -1,0 +1,20 @@
+<section>
+  <h2> Restaurante: <%= @restaurant.brand_name  %></h2> 
+  <div>
+      <h3><%= @restaurant.corporate_name %></h3>
+      <dl>
+        <dt>Razão Social:</dt>
+        <dd><%= @restaurant.corporate_name %></dd>
+        <dt>CNPJ:</dt>
+        <dd><%= @restaurant.cnpj %></dd>
+        <dt>Telefone:</dt>
+        <dd><%= @restaurant.telephone_number %></dd>
+        <dt>E-mail:</dt>
+        <dd><%= @restaurant.email %></dd>
+        <dt>Endereço Completo:</dt>
+        <dd><%= @restaurant.full_address %></dd>
+      </dl>
+  </div>
+</section>
+
+

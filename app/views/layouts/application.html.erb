@@ -21,9 +21,16 @@
   <body class="prose">
     <h1><%= link_to 'Pá Levar', root_path %></h1>
     <nav>
+
       <% if admin_signed_in? %>
         <p> <%= current_admin.name %> <%= current_admin.last_name %> - <%= current_admin.email %>
+
         <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
+        
+        <% unless current_admin.restaurant.nil? %>
+          <%= link_to 'Meu Restaurante', current_admin.restaurant %>
+        <% end %>
+      
       <% else %>
         <%= link_to 'Entrar', new_admin_session_path %>
       <% end%>
@@ -31,7 +38,7 @@
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
     
-    <main class="container mx-auto mt-28 px-5 flex">
+    <main>
       <%= yield %>
     </main>
   </body>
