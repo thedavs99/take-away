@@ -2,6 +2,8 @@
   <h2> Restaurante: <%= @restaurant.brand_name  %></h2> 
   <div>
       <h3><%= @restaurant.corporate_name %></h3>
+      <%= @status %>
+      <p> </p>
       <dl>
         <dt>Razão Social:</dt>
         <dd><%= @restaurant.corporate_name %></dd>
@@ -13,6 +15,7 @@
         <dd><%= @restaurant.email %></dd>
         <dt>Endereço Completo:</dt>
         <dd><%= @restaurant.full_address %></dd>
+        <dt><%= link_to 'Meu Hórario', restaurant_schedule_path(@restaurant.restaurant_schedule) %></dt>
       </dl>
   </div>
 </section>

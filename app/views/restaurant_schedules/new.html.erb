@@ -1,0 +1,56 @@
+<h3>Horário de funcionamento</h3>
+
+<% if @restaurant_schedule.errors.any? %>
+  <ul>
+    <% @restaurant_schedule.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with(model: @restaurant_schedule) do |f| %>
+  <div>
+    <%= f.label :mon_open %>
+    <%= f.time_field :mon_open %>
+    <%= f.label :mon_close %>
+    <%= f.time_field :mon_close %>
+  </div>
+  <div>
+    <%= f.label :tue_open %>
+    <%= f.time_field :tue_open %>
+    <%= f.label :tue_close %>
+    <%= f.time_field :tue_close %>
+  </div>
+  <div>
+    <%= f.label :wed_open %>
+    <%= f.time_field :wed_open %>
+    <%= f.label :wed_close %>
+    <%= f.time_field :wed_close %>
+  </div>
+  <div>
+    <%= f.label :thu_open %>
+    <%= f.time_field :thu_open %>
+    <%= f.label :thu_close %>
+    <%= f.time_field :thu_close %>
+  </div>
+  <div>
+    <%= f.label :fri_open %>
+    <%= f.time_field :fri_open %>
+    <%= f.label :fri_close %>
+    <%= f.time_field :fri_close %>
+  </div>
+  <div>
+    <%= f.label :sat_open %>
+    <%= f.time_field :sat_open %>
+    <%= f.label :sat_close %>
+    <%= f.time_field :sat_close %>
+  </div>
+  <div>
+    <%= f.label :sun_open %>
+    <%= f.time_field :sun_open %>
+    <%= f.label :sun_close %>
+    <%= f.time_field :sun_close %>
+  </div>
+    <%= f.submit 'Enviar'%>
+  </div>
+<% end %>

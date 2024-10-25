@@ -1,0 +1,46 @@
+<table>
+  <thead>
+    <tr>
+      <th>Dia</th>
+      <th>Abertura</th>
+      <th>Fechamento</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>Segunda Feira</th>
+      <td><%= @restaurant_schedule.mon_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.mon_close.time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <th>Terza Feira</th>
+      <td><%= @restaurant_schedule.tue_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.tue_close.time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <th>Quarta Feira</th>
+      <td><%= @restaurant_schedule.wed_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.wed_close.time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <th>Quinta Feira</th>
+      <td><%= @restaurant_schedule.thu_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.thu_close.time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <th>Sexta Feira</th>
+      <td><%= @restaurant_schedule.fri_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.fri_close.time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <th>Sabado</th>
+      <td><%= @restaurant_schedule.sat_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.sat_close.time.strftime("%H:%M") %></td>
+    </tr>
+    <tr>
+      <th>Domingo</th>
+      <td><%= @restaurant_schedule.sun_open.time.strftime("%H:%M") %></td>
+      <td><%= @restaurant_schedule.sun_close.time.strftime("%H:%M") %></td>
+    </tr>
+  </tbody>
+</table>

@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   root "home#index"
 
   resources :restaurants, only: [:index, :new, :create, :show]
+  resources :restaurant_schedules, only: [:index, :new, :create, :show]
 end

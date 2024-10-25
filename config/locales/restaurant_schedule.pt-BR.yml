@@ -1,0 +1,22 @@
+pt-BR:
+  activerecord:
+    models:
+      restaurant_schedule: Horário de Restaurante
+    attributes:
+      restaurant_schedule:
+        mon_open: 'Abertura Segunda Feira'
+        mon_close: 'Cierre Segunda Feira'
+        tue_open: 'Abertura Terza Feira'
+        tue_close: 'Cierre Terza Feira'
+        wed_open: 'Abertura Quarta Feira'
+        wed_close: 'Cierre Quarta Feira'
+        thu_open: 'Abertura Quinta Feira'
+        thu_close: 'Cierre Quinta Feira'
+        fri_open: 'Abertura Sexta Feira'
+        fri_close: 'Cierre Sexta Feira'
+        sat_open: 'Abertura Sabado'
+        sat_close: 'Cierre Sabado'
+        sun_open: 'Abertura Domingo'
+        sun_close: 'Cierre Domingo'
+
+

@@ -7,6 +7,7 @@ class Restaurant < ApplicationRecord
   validates :telephone_number, length: { minimum: 10, maximum: 11 }
   before_validation :generate_code
   validates :cnpj, :admin, :email, uniqueness: true
+  has_one :restaurant_schedule
 
   private
 

@@ -1,4 +1,4 @@
-<%= form_with(model: @restaurant, data: { turbo: false }) do |f| %>
+<%= form_with(model: @restaurant) do |f| %>
   <div>
     <%= f.label :corporate_name %>
     <%= f.text_field :corporate_name %>
@@ -24,6 +24,6 @@
     <%= f.email_field :email %>
   </div>
   <div>
-    <%= f.submit 'Enviar'%>
+    <%= f.submit 'Próximo'%>
   </div>
 <% end %>

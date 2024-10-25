@@ -25,8 +25,7 @@ describe 'Usuario cadastra um restaurante' do
     expect(page).to have_field('Telefone')
   end
 
-
-  it 'com sucesso' do
+  it 'e ve tela de cadastro de horario' do
     # Arrange
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
@@ -40,13 +39,10 @@ describe 'Usuario cadastra um restaurante' do
     fill_in 'Telefone', with: '11930591238'
     fill_in 'E-mail', with: 'contato@mcdonald.com'
     fill_in 'Endereço Completo', with: 'Rua Antonio Miguel, 99'
-    click_on 'Enviar'
+    click_on 'Próximo'
 
     # Assert
-    expect(page).to have_content 'Restaurante cadastrado'
-    expect(page).to have_content 'Restaurante: Mc Donalds'
-    expect(page).to have_content 'Telefone: 11930591238'
-    expect(page).to have_content 'E-mail: contato@mcdonald.com'
+    expect(current_path).to eq new_restaurant_schedule_path
   end
 
   it 'com dados incompletos' do
@@ -62,7 +58,7 @@ describe 'Usuario cadastra um restaurante' do
     fill_in 'Telefone', with: ''
     fill_in 'E-mail', with: ''
     fill_in 'Endereço Completo', with: ''
-    click_on 'Enviar'
+    click_on 'Próximo'
 
     # Assert
     expect(page).to have_content 'Restaurante não cadastrado'
@@ -80,10 +76,15 @@ describe 'Usuario cadastra um restaurante' do
     restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
                     full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
                     email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+    restaurant_schedule = RestaurantSchedule.create!( mon_open: '08:00', mon_close: '18:00', tue_open: '08:00', tue_close: '18:00',
+                    wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
+                    fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
+                    sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
     login_as(admin)
     visit new_restaurant_path
 
+    expect(restaurant.restaurant_schedule).to eq(restaurant_schedule)
     expect(current_path).to eq(restaurant_path(restaurant.id))
   end
 end

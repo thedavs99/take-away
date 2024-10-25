@@ -11,8 +11,11 @@ class ApplicationController < ActionController::Base
   end
 
   def register_a_restaurant 
-    unless current_admin.nil?
-      redirect_to new_restaurant_path if current_admin.restaurant.nil?
+    unless current_admin.nil?      
+      return redirect_to new_restaurant_path if current_admin.restaurant.nil?    
+      redirect_to new_restaurant_schedule_path if current_admin.restaurant.restaurant_schedule.nil?
     end      
   end
+
+
 end
