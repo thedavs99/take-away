@@ -1,0 +1,46 @@
+<%= form_with(model: @restaurant_schedule) do |f| %>
+  <div>
+    <%= f.label :mon_open %>
+    <%= f.time_field :mon_open, value: @restaurant_schedule.mon_open.strftime("%H:%M") %>
+    <%= f.label :mon_close %>
+    <%= f.time_field :mon_close, value: @restaurant_schedule.mon_close.strftime("%H:%M")%>
+  </div>
+  <div>
+    <%= f.label :tue_open %>
+    <%= f.time_field :tue_open, value: @restaurant_schedule.tue_open.strftime("%H:%M") %>
+    <%= f.label :tue_close %>
+    <%= f.time_field :tue_close, value: @restaurant_schedule.tue_close.strftime("%H:%M")%>
+  </div>
+  <div>
+    <%= f.label :wed_open %>
+    <%= f.time_field :wed_open, value: @restaurant_schedule.wed_open.strftime("%H:%M") %>
+    <%= f.label :wed_close %>
+    <%= f.time_field :wed_close, value: @restaurant_schedule.wed_close.strftime("%H:%M")%>
+  </div>
+  <div>
+    <%= f.label :thu_open %>
+    <%= f.time_field :thu_open, value: @restaurant_schedule.thu_open.strftime("%H:%M") %>
+    <%= f.label :thu_close %>
+    <%= f.time_field :thu_close, value: @restaurant_schedule.thu_close.strftime("%H:%M")%>
+  </div>
+  <div>
+    <%= f.label :fri_open %>
+    <%= f.time_field :fri_open, value: @restaurant_schedule.fri_open.strftime("%H:%M") %>
+    <%= f.label :fri_close %>
+    <%= f.time_field :fri_close, value: @restaurant_schedule.fri_close.strftime("%H:%M")%>
+  </div>
+  <div>
+    <%= f.label :sat_open %>
+    <%= f.time_field :sat_open, value: @restaurant_schedule.sat_open.strftime("%H:%M") %>
+    <%= f.label :sat_close %>
+    <%= f.time_field :sat_close, value: @restaurant_schedule.sat_close.strftime("%H:%M")%>
+  </div>
+  <div>
+    <%= f.label :sun_open %>
+    <%= f.time_field :sun_open, value: @restaurant_schedule.sun_open.strftime("%H:%M") %>
+    <%= f.label :sun_close %>
+    <%= f.time_field :sun_close, value: @restaurant_schedule.sun_close.strftime("%H:%M")%>
+  </div>
+    <%= f.submit 'Enviar'%>
+  </div>
+<% end %>

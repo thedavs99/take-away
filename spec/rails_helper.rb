@@ -68,7 +68,7 @@ RSpec.configure do |config|
   # 
   config.include Warden::Test::Helpers
   # 
-
+  config.include ActiveSupport::Testing::TimeHelpers
   config.before(type: :system) do
     driven_by(:rack_test)
   end

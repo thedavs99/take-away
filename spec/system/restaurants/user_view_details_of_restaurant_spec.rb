@@ -44,7 +44,8 @@ describe 'Usuario vê seu restaurante' do
   end
   it 'e ve Aberto' do
     # Arrange
-    Time.zone.local(2004, 11, 24, 10, 04, 44)
+    
+    travel_to(Time.zone.local(2004, 11, 24, 10, 04, 44))
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                         email: 'david@email.com', password: '123456789123')
     restaurant = Restaurant.create!(corporate_name: "McDonald's São Paulo", brand_name: "McDonald's", cnpj: 26219781000101, 
@@ -67,7 +68,7 @@ describe 'Usuario vê seu restaurante' do
 
   it 'e ve Fechado' do
     # Arrange
-    Time.zone.local(2004, 11, 24, 00, 04, 44)
+    travel_to(Time.zone.local(2004, 11, 24, 00, 04, 44))
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                         email: 'david@email.com', password: '123456789123')
     restaurant = Restaurant.create!(corporate_name: "McDonald's São Paulo", brand_name: "McDonald's", cnpj: 26219781000101, 
@@ -83,7 +84,7 @@ describe 'Usuario vê seu restaurante' do
     click_on 'Meu Restaurante'
 
     # Assert
-    expect(page).to have_content("Aberto")
+    expect(page).to have_content("Fechado")
   end
 
 end

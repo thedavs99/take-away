@@ -14,13 +14,13 @@ describe 'Usuario cadastra um restaurante' do
 
     # Assert
     expect(page).to have_content('Horário de funcionamento')
-    expect(page).to have_field('Segunda Feira')
-    expect(page).to have_field('Terza Feira')
-    expect(page).to have_field('Quarta Feira')
-    expect(page).to have_field('Quinta Feira')
-    expect(page).to have_field('Sexta Feira')
-    expect(page).to have_field('Sabado')
-    expect(page).to have_field('Domingo')
+    expect(page).to have_field('Abertura Segunda Feira')
+    expect(page).to have_field('Abertura Terza Feira')
+    expect(page).to have_field('Abertura Quarta Feira')
+    expect(page).to have_field('Abertura Quinta Feira')
+    expect(page).to have_field('Abertura Sexta Feira')
+    expect(page).to have_field('Abertura Sabado')
+    expect(page).to have_field('Abertura Domingo')
   end
 
   it 'e ve dados do restaurante' do
