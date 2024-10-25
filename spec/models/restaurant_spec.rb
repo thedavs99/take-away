@@ -103,7 +103,7 @@ RSpec.describe Restaurant, type: :model do
                       email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
       restaurant = Restaurant.new(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 28176493000134, 
                       full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
-                      email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+                      email: 'contato@mcdonaldsp.com' ,telephone_number: 11999695714, admin: admin)
       
       expect(restaurant.valid?).to be_falsey
     end

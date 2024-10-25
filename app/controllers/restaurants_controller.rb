@@ -23,27 +23,20 @@ class RestaurantsController < ApplicationController
   def show
     @restaurant = Restaurant.find(params[:id])
     
-    if DateTime.now.wday == 1
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.mon_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.mon_open.strftime("%H:%M")
+    if DateTime.now.wday == 1 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.mon_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.mon_open.strftime("%H:%M")
       @status = 'Aberto'
-    elsif DateTime.now.wday == 2
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.tue_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.tue_open.strftime("%H:%M")
-      @status = 'Aberto'
-    elsif DateTime.now.wday == 3
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.wed_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.wed_open.strftime("%H:%M")
-      @status = 'Aberto'
-    elsif DateTime.now.wday == 4
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.thu_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.thu_open.strftime("%H:%M")
-      @status = 'Aberto'
-    elsif DateTime.now.wday == 5
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.fri_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.fri_open.strftime("%H:%M")
-      @status = 'Aberto'
-    elsif DateTime.now.wday == 6
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sab_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sab_open.strftime("%H:%M")
-      @status = 'Aberto'
-    elsif DateTime.now.wday == 7
-      DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sun_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sun_open.strftime("%H:%M")
-      @status = 'Aberto'
+    elsif DateTime.now.wday == 2 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.tue_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.tue_open.strftime("%H:%M")
+      @status = 'Aberto' 
+    elsif DateTime.now.wday == 3 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.wed_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.wed_open.strftime("%H:%M")
+      @status = 'Aberto' 
+    elsif DateTime.now.wday == 4 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.thu_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.thu_open.strftime("%H:%M")
+      @status = 'Aberto' 
+    elsif DateTime.now.wday == 5 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.fri_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.fri_open.strftime("%H:%M")
+      @status = 'Aberto' 
+    elsif DateTime.now.wday == 6 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sab_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sab_open.strftime("%H:%M")
+      @status = 'Aberto' 
+    elsif DateTime.now.wday == 7 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sun_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sun_open.strftime("%H:%M")
+      @status = 'Aberto' 
     else
       @status = 'Fechado'
     end

@@ -15,7 +15,7 @@ class Restaurant < ApplicationRecord
     errors.add(:cnpj, 'não é válido') unless CNPJ.valid?(cnpj)   
   end
 
-  private
+
   def generate_code
     self.code = SecureRandom.alphanumeric(6).upcase unless self.code != nil
   end
