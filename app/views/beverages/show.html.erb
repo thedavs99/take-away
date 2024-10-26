@@ -1,0 +1,17 @@
+<section> 
+  <div>
+      <h3>Bebida: <%= @beverage.name  %></h3>
+      <dl>
+        <dt> 
+          <% if @beverage.image.attached? %>
+            <img src="<%= url_for(@beverage.image) %>" alt="Imagem">
+          <% end %>
+        </dt>
+        <dt>Descrição:</dt>
+        <dd><%= @beverage.description %></dd>
+        <dt>Calorias:</dt>
+        <dd><%= @beverage.calories %> kcal</dd>
+  </div>
+  <%= link_to 'Editar', edit_beverage_path(@beverage)%>
+  <%= button_to 'Remover', beverage_path(@beverage), method: :delete %>
+</section>

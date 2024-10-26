@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'usuario ve todos os pratos do seu restaurante' do
   it 'e deve estar autenticado' do
-    visit dish_path(1)
+    visit edit_beverage_path(1)
 
     expect(current_path).to have_content new_admin_session_path
   end
@@ -12,7 +12,7 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                   email: 'david@email.com', password: '123456789123')
 
     login_as(admin)
-    visit dish_path(1)
+    visit edit_beverage_path(1)
 
     expect(current_path).to have_content new_restaurant_path
   end
@@ -25,9 +25,33 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                     email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
 
     login_as(admin)
-    visit dish_path(1)
+    visit edit_beverage_path(1)
                 
     expect(current_path).to have_content new_restaurant_schedule_path    
+  end
+
+  it 'da tela de inicio'  do
+    admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
+                  email: 'david@email.com', password: '123456789123')
+    restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
+                    full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
+                    email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+    RestaurantSchedule.create!( mon_open: '08:00', mon_close: '18:00', tue_open: '08:00', tue_close: '18:00',
+                    wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
+                    fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
+                    sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
+    Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
+    
+
+    login_as(admin)
+    visit root_path
+    click_on 'Minhas Bebidas'
+    click_on 'Coca-Cola'
+    click_on 'Editar'
+
+    expect(page).to have_field('Nome', with: 'Coca-Cola')
+    expect(page).to have_field('Descrição', with: 'Refrigerante carbonatado vendido em lojas.')
+    expect(page).to have_field('Calorias', with: '80.0')
   end
 
   it 'com sucesso'  do
@@ -40,22 +64,24 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                     wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
-    Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
-                calories: 174, restaurant: restaurant)
+    Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
     
 
     login_as(admin)
     visit root_path
-    click_on 'Meus Pratos'
-    click_on 'Risotto'
+    click_on 'Minhas Bebidas'
+    click_on 'Coca-Cola'
+    click_on 'Editar'
+    fill_in 'Nome', with: 'Coca-Cola'
+    fill_in 'Descrição', with: 'Refrigerante carbonatado americana'
+    fill_in 'Calorias', with: '95.0'
+    click_on 'Enviar'
 
-    expect(page).to have_content 'Prato: Risotto'
-    expect(page).to have_content 'Descrição: Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.'
-    expect(page).to have_content 'Calorias: 174'
-    expect(page).not_to have_field 'Nome'
+    expect(page).to have_content 'Refrigerante carbonatado americana'
+    expect(page).to have_content 'Calorias: 95.0 kcal'
   end
 
-  it 'e não ve dos outros'  do
+  it 'e não edita dos outros'  do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
     restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
@@ -65,8 +91,7 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                     wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
-    Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
-                calories: 174, restaurant: restaurant)
+    Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
     second_admin = Admin.create!(name: 'Carlos', last_name: 'Martinez', cpf: '79404816060', 
                 email: 'carlos@email.com', password: '123456789123')
     second_restaurant = Restaurant.create!(corporate_name: "McDonald's São Paulo", brand_name: "McDonald's", cnpj: 28176493000134, 
@@ -76,12 +101,12 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                   wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                   fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                   sun_open: '08:00', sun_close: '18:00', restaurant: second_restaurant )
-    second_dish = Dish.create!(name: 'Ragú', description: 'suculento molho à base de carne cozida. A palavra é de origem francesa, mas a receita foi criada na Itália.',
-                  calories: 177, restaurant: second_restaurant)
+    second_beverage = Beverage.create!(name: 'Caipirinha', description: 'Coquetel brasileiro, de origem paulista.',
+                                        calories: 99, restaurant: second_restaurant)
     
 
     login_as(admin)
-    visit dish_path(second_dish)
+    visit edit_beverage_path(second_beverage)
 
     expect(current_path).to eq root_path
   end

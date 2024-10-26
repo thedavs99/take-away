@@ -30,6 +30,7 @@
         <% unless current_admin.restaurant.nil? %>
           <%= link_to 'Meu Restaurante', current_admin.restaurant %>
           <%= link_to 'Meus Pratos', dishes_path %>
+          <%= link_to 'Minhas Bebidas', beverages_path %>
         <% end %>
       
       <% else %>

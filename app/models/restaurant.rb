@@ -9,6 +9,7 @@ class Restaurant < ApplicationRecord
   validates :cnpj, :admin, :email, uniqueness: true
   has_one :restaurant_schedule
   has_many :dishes
+  has_many :beverages
 
   private
 

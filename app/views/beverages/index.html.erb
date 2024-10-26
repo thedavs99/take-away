@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Calorias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @beverages.each do |beverage| %>
+    <tr>
+      <td><%=link_to beverage.name, beverage_path(beverage) %></td>
+      <td><%= beverage.calories %></td>      
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Cadastrar', new_beverage_path %>
+
+
+  

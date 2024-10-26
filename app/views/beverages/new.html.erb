@@ -1,0 +1,11 @@
+<h3>Cadastrar Bebida</h3>
+
+<% if @beverage.errors.any? %>
+  <ul>
+    <% @beverage.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>
