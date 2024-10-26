@@ -1,7 +1,7 @@
 class DishesController < ApplicationController
   before_action :authenticate_admin!
   before_action :register_a_restaurant
-  before_action :set_dish_and_check_restaurant, only: [:show, :edit, :update]
+  before_action :set_dish_and_check_restaurant, only: [:show, :edit, :update, :destroy]
   def index
     @dishes = current_admin.restaurant.dishes
   end  
@@ -38,6 +38,11 @@ class DishesController < ApplicationController
       flash.now[:alert] = 'Prato de Restaurante não editado'
         render 'edit', status: :unprocessable_entity
     end  
+  end
+
+  def destroy
+    @dish.destroy
+    redirect_to dishes_path, notice: "Prato removido com sucesso"
   end
 
   private

@@ -13,4 +13,5 @@
         <dd><%= @dish.calories %> kcal</dd>
   </div>
   <%= link_to 'Editar', edit_dish_path(@dish)%>
+  <%= button_to 'Remover', dish_path(@dish), method: :delete %>
 </section>
