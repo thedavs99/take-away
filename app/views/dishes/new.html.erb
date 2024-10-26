@@ -1,0 +1,11 @@
+<h3>Cadastrar Prato</h3>
+
+<% if @dish.errors.any? %>
+  <ul>
+    <% @dish.errors.full_messages.each do |message| %>
+     <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= render 'form' %>

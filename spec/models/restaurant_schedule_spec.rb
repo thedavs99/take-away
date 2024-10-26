@@ -47,7 +47,6 @@ RSpec.describe RestaurantSchedule, type: :model do
       expect(restaurant_schedule.errors.include?(:sat_open)).to be true
 
       expect(restaurant_schedule.errors.include?(:sun_open)).to be true
-
     end
 
 

@@ -8,6 +8,7 @@ class Restaurant < ApplicationRecord
   before_validation :generate_code
   validates :cnpj, :admin, :email, uniqueness: true
   has_one :restaurant_schedule
+  has_many :dishes
 
   private
 

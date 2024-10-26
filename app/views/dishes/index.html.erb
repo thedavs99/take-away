@@ -1,0 +1,21 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Calorias</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @dishes.each do |dish| %>
+    <tr>
+      <td><%= dish.name %></td>
+      <td><%= dish.calories %></td>      
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'Cadastrar', new_dish_path %>
+
+
+  

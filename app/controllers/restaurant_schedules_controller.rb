@@ -8,7 +8,6 @@ class RestaurantSchedulesController < ApplicationController
   end
   
   def create
-
     @restaurant_schedule = RestaurantSchedule.new(restaurant_schedule_params)
     @restaurant_schedule.restaurant = current_admin.restaurant
     if @restaurant_schedule.save
@@ -49,7 +48,7 @@ class RestaurantSchedulesController < ApplicationController
 
   def restaurant_schedule_params
     params.require(:restaurant_schedule).permit(:mon_open, :mon_close, :tue_close,
-                                                                          :tue_open, :wed_close, :wed_open, :thu_open, :thu_close, :fri_close, 
-                                                                          :fri_open, :sat_open, :sat_close, :sun_close, :sun_open)
+                                                :tue_open, :wed_close, :wed_open, :thu_open, :thu_close, :fri_close, 
+                                                :fri_open, :sat_open, :sat_close, :sun_close, :sun_open)
   end
 end
