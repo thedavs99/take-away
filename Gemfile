@@ -35,6 +35,9 @@ gem 'devise'
 
 gem "cpf_cnpj"
 
+gem "image_processing", ">= 1.2"
+
+
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

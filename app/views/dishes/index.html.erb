@@ -8,7 +8,7 @@
   <tbody>
     <% @dishes.each do |dish| %>
     <tr>
-      <td><%= dish.name %></td>
+      <td><%=link_to dish.name, dish_path(dish) %></td>
       <td><%= dish.calories %></td>      
     </tr>
     <% end %>

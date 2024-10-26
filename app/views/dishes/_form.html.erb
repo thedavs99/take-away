@@ -12,6 +12,10 @@
     <%= f.number_field :calories %>
   </div>
   <div>
+    <%= f.label :image, 'Foto' %>
+    <%= f.file_field :image %>
+  </div>
+  <div>
     <%= f.submit 'Enviar'%>
   </div>
 <% end %>

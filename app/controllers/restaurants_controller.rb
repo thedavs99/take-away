@@ -30,7 +30,7 @@ class RestaurantsController < ApplicationController
       @status = 'Aberto' 
     elsif DateTime.now.wday == 5 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.fri_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.fri_open.strftime("%H:%M")
       @status = 'Aberto' 
-    elsif DateTime.now.wday == 6 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sab_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sab_open.strftime("%H:%M")
+    elsif DateTime.now.wday == 6 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sat_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sat_open.strftime("%H:%M")
       @status = 'Aberto' 
     elsif DateTime.now.wday == 7 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sun_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sun_open.strftime("%H:%M")
       @status = 'Aberto' 
@@ -46,7 +46,7 @@ class RestaurantsController < ApplicationController
       redirect_to restaurant_path(current_admin.restaurant), notice: 'Horário de Restaurante editado'
     else
       flash.now[:alert] = 'Horário de Restaurante não editado'
-      render 'new', status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end      
   end
 

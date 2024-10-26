@@ -28,7 +28,7 @@ class RestaurantSchedulesController < ApplicationController
       redirect_to restaurant_path(current_admin.restaurant), notice: 'Horário de Restaurante editado'
     else
       flash.now[:alert] = 'Horário de Restaurante não editado'
-      render 'new', status: :unprocessable_entity
+      render 'edit', status: :unprocessable_entity
     end      
   end
 

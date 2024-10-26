@@ -1,0 +1,16 @@
+<section> 
+  <div>
+      <h3>Prato: <%= @dish.name  %></h3>
+      <dl>
+        <dt> 
+          <% if @dish.image.attached? %>
+            <img src="<%= url_for(@dish.image) %>" alt="Imagem">
+          <% end %>
+        </dt>
+        <dt>Descrição:</dt>
+        <dd><%= @dish.description %></dd>
+        <dt>Calorias:</dt>
+        <dd><%= @dish.calories %> kcal</dd>
+  </div>
+  <%= link_to 'Editar', edit_dish_path(@dish)%>
+</section>

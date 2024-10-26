@@ -1,6 +1,7 @@
 class DishesController < ApplicationController
   before_action :authenticate_admin!
   before_action :register_a_restaurant
+  before_action :set_dish_and_check_restaurant, only: [:show, :edit, :update]
   def index
     @dishes = current_admin.restaurant.dishes
   end  
@@ -12,8 +13,10 @@ class DishesController < ApplicationController
   def create
     @dish = Dish.new(dish_params)
     @dish.restaurant = current_admin.restaurant
+    @dish.image.attach(params[:dish][:image]) 
     if @dish.save
     redirect_to dishes_path, notice: 'Prato de Restaurante cadastrado'
+
     else
       @dish.restaurant = nil
       flash.now[:alert] = 'Prato de Restaurante não cadastrado'
@@ -21,10 +24,26 @@ class DishesController < ApplicationController
     end  
   end
 
+  def show;  end
+
+  def edit; end
+
+  def update
+    if @dish.update(dish_params)
+      redirect_to dish_path(@dish), notice: 'Prato de Restaurante editado'
+      if params[:dish][:image].present?
+        @dish.image.attach(params[:dish][:image])         
+      end        
+    else
+      flash.now[:alert] = 'Prato de Restaurante não editado'
+        render 'edit', status: :unprocessable_entity
+    end  
+  end
+
   private
 
   def dish_params
-    params.require(:dish).permit(:nome, :description, :calories)
+    params.require(:dish).permit(:name, :description, :calories)
   end
 
   def set_dish_and_check_restaurant
