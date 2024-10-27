@@ -31,6 +31,11 @@
           <%= link_to 'Meu Restaurante', current_admin.restaurant %>
           <%= link_to 'Meus Pratos', dishes_path %>
           <%= link_to 'Minhas Bebidas', beverages_path %>
+          <%= form_with url: search_restaurants_path, method: :get do |f| %>
+            <%= f.label :query, "opcções disponíveis" %>
+            <%= f.text_field :query %>
+            <%= f.submit "Buscar" %>
+          <% end %>    
         <% end %>
       
       <% else %>

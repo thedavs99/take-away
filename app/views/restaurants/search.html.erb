@@ -1,0 +1,23 @@
+<h1>Resultados da Busca por: <%= @search %></h1>
+
+<% if @dishes.present? && @beverages.present?  %>
+  <p>Opções encontradas: <%= @dishes.count + @beverages.count %></p> 
+<% elsif @dishes.present? %>
+  <p>Opções encontradas: <%= @dishes.count%></p> 
+<% elsif @beverages.present? %>
+  <p>Opções encontradas: <%= @beverages.count%></p>
+<% end %>
+
+<% if @dishes.present? %>
+  <% @dishes.each do | dish |%>
+    <%= link_to dish.name, dish_path(dish) %> |  <%= link_to 'Editar', edit_dish_path(dish) %>
+  <% end %>
+<% end %>
+
+<% if @beverages.present? %>
+  <% @beverages.each do | beverage |%>
+    <%= link_to beverage.name, beverage_path(beverage) %> | <%= link_to 'Editar', edit_beverage_path(beverage) %>
+  <% end %>
+<% end %>
+
+

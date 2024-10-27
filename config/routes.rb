@@ -13,7 +13,9 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "home#index"
 
-  resources :restaurants, only: [ :new, :create, :show, :edit, :update ]
+  resources :restaurants, only: [ :new, :create, :show, :edit, :update ] do
+    get "search", on: :collection
+  end
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]
   resources :dishes, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
   resources :beverages, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]

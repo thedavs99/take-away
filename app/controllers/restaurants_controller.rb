@@ -50,7 +50,11 @@ class RestaurantsController < ApplicationController
     end      
   end
 
-
+  def search
+    @search = params[:query]
+    @dishes = current_admin.restaurant.dishes.where("name LIKE ? OR description LIKE ?", "%#{@search}%", "%#{@search}%" )
+    @beverages = current_admin.restaurant.beverages.where("name LIKE ? OR description LIKE ?", "%#{@search}%", "%#{@search}%" )
+  end
   
   private 
   def check_user_own_a_restaurant
