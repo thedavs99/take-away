@@ -1,48 +1,99 @@
-<table>
-  <thead>
-    <tr>
-      <th>Dia</th>
-      <th>Abertura</th>
-      <th>Fechamento</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>Segunda Feira</th>
-      <td><%= @restaurant_schedule.mon_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.mon_close.time.strftime("%H:%M") %></td>
-    </tr>
-    <tr>
-      <th>Terza Feira</th>
-      <td><%= @restaurant_schedule.tue_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.tue_close.time.strftime("%H:%M") %></td>
-    </tr>
-    <tr>
-      <th>Quarta Feira</th>
-      <td><%= @restaurant_schedule.wed_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.wed_close.time.strftime("%H:%M") %></td>
-    </tr>
-    <tr>
-      <th>Quinta Feira</th>
-      <td><%= @restaurant_schedule.thu_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.thu_close.time.strftime("%H:%M") %></td>
-    </tr>
-    <tr>
-      <th>Sexta Feira</th>
-      <td><%= @restaurant_schedule.fri_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.fri_close.time.strftime("%H:%M") %></td>
-    </tr>
-    <tr>
-      <th>Sabado</th>
-      <td><%= @restaurant_schedule.sat_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.sat_close.time.strftime("%H:%M") %></td>
-    </tr>
-    <tr>
-      <th>Domingo</th>
-      <td><%= @restaurant_schedule.sun_open.time.strftime("%H:%M") %></td>
-      <td><%= @restaurant_schedule.sun_close.time.strftime("%H:%M") %></td>
-    </tr>
-  </tbody>
-</table>
+<div class="m-4 relative overflow-x-auto flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                  Dia
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Abertura
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Fechamento
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Segunda Feira
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.mon_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.mon_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Terza Feira
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.tue_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.tue_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Quarta Feira
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.wed_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.wed_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Quinta Feira
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.thu_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.thu_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Sexta Feira
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.fri_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.fri_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800 dark:border-gray-700">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Sabado
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.sat_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.sat_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+                <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                  Domingo
+                </th>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.sun_open.time.strftime("%H:%M") %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= @restaurant_schedule.sun_close.time.strftime("%H:%M") %>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <br/>
+    <%= link_to 'Editar', edit_restaurant_schedule_path(@restaurant_schedule), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900"%>
+</div>
 
-<%= link_to 'Editar', edit_restaurant_schedule_path(@restaurant_schedule)%>

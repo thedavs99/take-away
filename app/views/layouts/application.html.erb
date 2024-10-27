@@ -18,34 +18,50 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="prose">
-    <h1><%= link_to 'Pá Levar', root_path %></h1>
-    <nav>
-
-      <% if admin_signed_in? %>
-        <p> <%= current_admin.name %> <%= current_admin.last_name %> - <%= current_admin.email %>
-
-        <%= button_to 'Sair', destroy_admin_session_path, method: :delete %>
-        
-        <% unless current_admin.restaurant.nil? %>
-          <%= link_to 'Meu Restaurante', current_admin.restaurant %>
-          <%= link_to 'Meus Pratos', dishes_path %>
-          <%= link_to 'Minhas Bebidas', beverages_path %>
-          <%= form_with url: search_restaurants_path, method: :get do |f| %>
-            <%= f.label :query, "opcções disponíveis" %>
-            <%= f.text_field :query %>
-            <%= f.submit "Buscar" %>
-          <% end %>    
-        <% end %>
-      
-      <% else %>
-        <%= link_to 'Entrar', new_admin_session_path %>
-      <% end%>
+  <body class="bg-slate-500">
+    <nav class=" bg-slate-900 p-4 flex justify-between sticky top-0 h-20 items-center">
+      <div class="rounded-md px-3 py-2 text-4xl font-extrabold text-gray-300">
+        <%= link_to 'Pá Levar', root_path %>
+      </div>
+        <div class="flex space-x-2 items-center">
+        <% if admin_signed_in? %> 
+          <% unless current_admin.restaurant.nil? %>
+            <div class=>    
+              <%= link_to 'Meus Pratos', dishes_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+            </div>     
+            <div> 
+              <%= link_to 'Meu Restaurante', current_admin.restaurant, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"%>
+            </div>   
+            <div> 
+              <%= link_to 'Minhas Bebidas', beverages_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+            </div>              
+            <div>
+              <%= form_with url: search_restaurants_path, method: :get, class: "flex inline" do |f| %>
+                <%= f.label :query, "Opcções disponíveis", class: "text-sm font-medium text-gray-300" %>
+                <%= f.text_field :query, class: "block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                <%= f.submit "Buscar", class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+        <div class="flex space-x-2, items-center">  
+          <div class="text-sm font-medium text-gray-300">  
+            <%= current_admin.name %> <%= current_admin.last_name %> - <%= current_admin.email %>
+          </div>      
+          <div>
+            <%= button_to 'Sair', destroy_admin_session_path, method: :delete, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+            <% else %>
+            
+            <%= link_to 'Entrar', new_admin_session_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+          </div>        
+        </div>    
+        <% end%>
+      </div>
     </nav>
        <p class="notice"><%= notice %></p>
        <p class="alert"><%= alert %></p>
     
-    <main>
+    <main class="bg-slate-500">
       <%= yield %>
     </main>
   </body>

@@ -1,24 +1,33 @@
-<section>
-  <h2> Restaurante: <%= @restaurant.brand_name  %></h2> 
-  <div>
-      <h3><%= @restaurant.corporate_name %></h3>
-      <%= @status %>
-      <p> </p>
-      <dl>
-        <dt>Razão Social:</dt>
-        <dd><%= @restaurant.corporate_name %></dd>
-        <dt>CNPJ:</dt>
-        <dd><%= @restaurant.cnpj %></dd>
-        <dt>Telefone:</dt>
-        <dd><%= @restaurant.telephone_number %></dd>
-        <dt>E-mail:</dt>
-        <dd><%= @restaurant.email %></dd>
-        <dt>Endereço Completo:</dt>
-        <dd><%= @restaurant.full_address %></dd>
-        <dt><%= link_to 'Meu Hórario', restaurant_schedule_path(@restaurant.restaurant_schedule) %></dt>
-      </dl>
+<section class="bg-slate-500">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+    <h2 class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white">Restaurante: <%= @restaurant.brand_name %></h2>
+    <p class="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-blue"><%= @status %></p>    
+    <dl>
+      <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Razão Social:</dt>
+      <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @restaurant.corporate_name %></dd>
+      <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Endereço Completo:</dt>
+      <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @restaurant.full_address %></dd>
+    </dl>
+    <dl class="flex items-center space-x-6">
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">CNPJ:</dt>
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @restaurant.cnpj %></dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Telefone:</dt>
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @restaurant.telephone_number %></dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">E-mail:</dt>
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @restaurant.email %></dd>
+      </div>
+    </dl>
+      <div class="flex items-center space-x-4">
+        <%= link_to 'Meu Hórario', restaurant_schedule_path(@restaurant.restaurant_schedule), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900"%>
+        <%= link_to 'Editar', edit_restaurant_path(@restaurant), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900"%>
+      </div>
+    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
   </div>
-  <%= link_to 'Editar', edit_restaurant_path(@restaurant)%>
 </section>
 
 

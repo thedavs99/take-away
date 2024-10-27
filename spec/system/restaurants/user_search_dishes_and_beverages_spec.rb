@@ -19,7 +19,7 @@ describe 'Usuário busca bebidas e pratos' do
 
     # Assert
     within 'nav' do
-      expect(page).to have_field 'opcções disponíveis'
+      expect(page).to have_field 'Opcções disponíveis'
       expect(page).to have_button 'Buscar'
     end
   end
@@ -54,7 +54,7 @@ describe 'Usuário busca bebidas e pratos' do
     # Act
     login_as(admin)
     visit root_path
-    fill_in 'opcções disponíveis', with: 'Risotto'
+    fill_in 'Opcções disponíveis', with: 'Risotto'
     click_on 'Buscar'
 
     # Assert
@@ -82,7 +82,7 @@ describe 'Usuário busca bebidas e pratos' do
     # Act
     login_as(admin)
     visit root_path
-    fill_in 'opcções disponíveis', with: 'Coca-Cola'
+    fill_in 'Opcções disponíveis', with: 'Coca-Cola'
     click_on 'Buscar'
 
     # Assert
@@ -109,7 +109,7 @@ describe 'Usuário busca bebidas e pratos' do
     # Act
     login_as(admin)
     visit root_path
-    fill_in 'opcções disponíveis', with: 'Risotto'
+    fill_in 'Opcções disponíveis', with: 'Risotto'
     click_on 'Buscar'
     click_on 'Risotto'
 
@@ -136,7 +136,7 @@ describe 'Usuário busca bebidas e pratos' do
     # Act
     login_as(admin)
     visit root_path
-    fill_in 'opcções disponíveis', with: 'Risotto'
+    fill_in 'Opcções disponíveis', with: 'Risotto'
     click_on 'Buscar'
     click_on 'Editar'
 
