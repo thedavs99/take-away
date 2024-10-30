@@ -1,0 +1,11 @@
+<%= form_with(model: [@dish, @dish_portion]) do |f| %>
+  <div>
+  <%= f.label :description %>
+  <%= f.text_field :description %>
+  </div>
+  <div>
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  </div>
+  <%= f.submit 'Gravar' %>
+<% end %>

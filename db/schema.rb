@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_30_012150) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_30_171000) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -55,6 +55,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_012150) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
+  create_table "beverage_portions", force: :cascade do |t|
+    t.string "description"
+    t.float "price"
+    t.integer "beverage_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["beverage_id"], name: "index_beverage_portions_on_beverage_id"
+  end
+
   create_table "beverages", force: :cascade do |t|
     t.string "name"
     t.string "description"
@@ -64,6 +73,15 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_012150) do
     t.datetime "updated_at", null: false
     t.integer "status", default: 2
     t.index ["restaurant_id"], name: "index_beverages_on_restaurant_id"
+  end
+
+  create_table "dish_portions", force: :cascade do |t|
+    t.string "description"
+    t.float "price"
+    t.integer "dish_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dish_id"], name: "index_dish_portions_on_dish_id"
   end
 
   create_table "dishes", force: :cascade do |t|
@@ -114,7 +132,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_30_012150) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "beverage_portions", "beverages"
   add_foreign_key "beverages", "restaurants"
+  add_foreign_key "dish_portions", "dishes"
   add_foreign_key "dishes", "restaurants"
   add_foreign_key "restaurant_schedules", "restaurants"
   add_foreign_key "restaurants", "admins"

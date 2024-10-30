@@ -19,6 +19,13 @@
   <% else %>
     <%= button_to 'Ativar', active_dish_path(@dish) %>
   <% end %>
+  <%= link_to 'Adicionar porção', new_dish_dish_portion_path(@dish) %>
   <%= link_to 'Editar', edit_dish_path(@dish)%>
   <%= button_to 'Remover', dish_path(@dish), method: :delete %>
+</section>
+
+<section>
+  <% @dish.dish_portions.each do |porcao| %>
+    <%= porcao.description%> preço: <%= porcao.price %>
+  <% end %>
 </section>

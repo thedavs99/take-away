@@ -72,5 +72,6 @@ describe 'Usuario informa novo status de uma bebida' do
       expect(page).not_to have_button 'Ativar'    
       expect(page).to have_content 'Status: Ativo'
     end    
+    
   end
 end

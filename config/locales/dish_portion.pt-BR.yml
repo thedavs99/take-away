@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      dish_portion: Porção de bebida
+    attributes:
+      dish_portion:
+        description: 'Descrição'
+        price: 'Preço'

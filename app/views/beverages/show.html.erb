@@ -19,6 +19,13 @@
   <% else %>
     <%= button_to 'Ativar', active_beverage_path(@beverage) %>
   <% end %>
+  <%= link_to 'Adicionar porção', new_beverage_beverage_portion_path(@beverage) %>
   <%= link_to 'Editar', edit_beverage_path(@beverage)%>
   <%= button_to 'Remover', beverage_path(@beverage), method: :delete %>
+</section>
+
+<section>
+  <% @beverage.beverage_portions.each do |porcao| %>
+    <%= porcao.description%> preço: <%= porcao.price %>
+  <% end %>
 </section>

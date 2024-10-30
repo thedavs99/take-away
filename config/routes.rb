@@ -19,10 +19,12 @@ Rails.application.routes.draw do
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]
   resources :dishes, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
     post 'inactive', on: :member 
-    post 'active', on: :member 
+    post 'active', on: :member
+    resources :dish_portions, only: [ :new, :create ] 
   end
   resources :beverages, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
     post 'inactive', on: :member 
-    post 'active', on: :member 
+    post 'active', on: :member
+    resources :beverage_portions, only: [ :new, :create ] 
   end
 end
