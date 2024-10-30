@@ -1,7 +1,7 @@
 class BeveragesController < ApplicationController
   before_action :authenticate_admin!
   before_action :register_a_restaurant
-  before_action :set_beverage_and_check_restaurant, only: [ :show , :edit ,:update, :destroy ]
+  before_action :set_beverage_and_check_restaurant, only: [ :show , :edit ,:update, :destroy, :inactive, :active ]
 
   def index
     @beverages = current_admin.restaurant.beverages
@@ -44,6 +44,16 @@ class BeveragesController < ApplicationController
   def destroy
     @beverage.destroy
     redirect_to dishes_path, notice: "Bebida removido com sucesso"
+  end
+
+  def inactive
+    @beverage.inactive!
+    redirect_to @beverage
+  end
+
+  def active
+    @beverage.active!
+    redirect_to @beverage
   end
 
   private

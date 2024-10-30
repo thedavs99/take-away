@@ -1,7 +1,7 @@
 class DishesController < ApplicationController
   before_action :authenticate_admin!
   before_action :register_a_restaurant
-  before_action :set_dish_and_check_restaurant, only: [:show, :edit, :update, :destroy]
+  before_action :set_dish_and_check_restaurant, only: [:show, :edit, :update, :destroy, :inactive, :active]
   def index
     @dishes = current_admin.restaurant.dishes
   end  
@@ -43,6 +43,16 @@ class DishesController < ApplicationController
   def destroy
     @dish.destroy
     redirect_to dishes_path, notice: "Prato removido com sucesso"
+  end
+
+  def inactive
+    @dish.inactive!
+    redirect_to @dish
+  end
+
+  def active
+    @dish.active!
+    redirect_to @dish
   end
 
   private

@@ -1,4 +1,6 @@
 pt-BR:
+  inactive: 'Desativado'
+  active: 'Ativo'
   activerecord:
     models:
       beverage: Bebida

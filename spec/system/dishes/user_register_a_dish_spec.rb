@@ -72,7 +72,7 @@ describe 'Usuario cadastra um restaurante' do
     expect(page).to have_content 'Calorias não pode ficar em branco'
   end
 
-  it 'Adiciona imagem' do
+  it 'Adiciona imagem e é criado com status' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
     restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
@@ -95,5 +95,6 @@ describe 'Usuario cadastra um restaurante' do
     click_on 'Risotto'
 
     expect(page).to have_css('img[src*="risotto.jpeg"]')
+    expect(page).to have_content('Status: Ativo')
   end
 end

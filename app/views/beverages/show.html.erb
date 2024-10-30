@@ -11,7 +11,14 @@
         <dd><%= @beverage.description %></dd>
         <dt>Calorias:</dt>
         <dd><%= @beverage.calories %> kcal</dd>
+        <dt>Status:</dt>
+        <dd><%= I18n.translate(@beverage.status) %></dd>
   </div>
+  <% if @beverage.active? %>
+    <%= button_to 'Desativar', inactive_beverage_path(@beverage) %>
+  <% else %>
+    <%= button_to 'Ativar', active_beverage_path(@beverage) %>
+  <% end %>
   <%= link_to 'Editar', edit_beverage_path(@beverage)%>
   <%= button_to 'Remover', beverage_path(@beverage), method: :delete %>
 </section>

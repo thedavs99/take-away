@@ -11,7 +11,14 @@
         <dd><%= @dish.description %></dd>
         <dt>Calorias:</dt>
         <dd><%= @dish.calories %> kcal</dd>
+        <dt>Status:</dt>
+        <dd><%= I18n.translate(@dish.status) %></dd>
   </div>
+  <% if @dish.active? %>
+    <%= button_to 'Desativar', inactive_dish_path(@dish) %>
+  <% else %>
+    <%= button_to 'Ativar', active_dish_path(@dish) %>
+  <% end %>
   <%= link_to 'Editar', edit_dish_path(@dish)%>
   <%= button_to 'Remover', dish_path(@dish), method: :delete %>
 </section>

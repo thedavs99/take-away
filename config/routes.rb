@@ -17,6 +17,12 @@ Rails.application.routes.draw do
     get "search", on: :collection
   end
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]
-  resources :dishes, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
-  resources :beverages, only: [ :index, :new, :create, :show, :edit, :update, :destroy ]
+  resources :dishes, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
+    post 'inactive', on: :member 
+    post 'active', on: :member 
+  end
+  resources :beverages, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
+    post 'inactive', on: :member 
+    post 'active', on: :member 
+  end
 end
