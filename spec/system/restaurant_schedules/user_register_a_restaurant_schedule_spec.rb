@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe 'Usuario cadastra um restaurante' do
-  it 'da tela de inicio' do
+describe 'Usuario cadastra um horario' do
+  it 'ao ingresar' do
     # Arrange
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
@@ -88,7 +88,7 @@ describe 'Usuario cadastra um restaurante' do
     expect(page).to have_content 'Cierre Domingo não pode ficar em branco'
   end
 
-  it 'Usuario cadastra segundo horario' do
+  it 'e não pode cadastrar segundo horario' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
     restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 

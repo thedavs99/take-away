@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'usuario ve todos os pratos do seu restaurante' do
+describe 'usuario ve todas as bebidas do seu restaurante' do
   it 'e deve estar autenticado' do
     visit edit_beverage_path(1)
 

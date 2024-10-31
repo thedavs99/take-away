@@ -1,6 +1,7 @@
 class BeveragePortion < ApplicationRecord
   belongs_to :beverage
   has_many :beverage_previous_prices
+  
   after_create :create_price
   validates :price, :description, presence: true
 

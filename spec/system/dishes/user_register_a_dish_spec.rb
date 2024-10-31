@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuario cadastra um restaurante' do
+describe 'Usuario cadastra um prato' do
   it 'da tela de inicio' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')

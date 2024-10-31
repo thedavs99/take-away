@@ -1,6 +1,7 @@
 class DishPortion < ApplicationRecord
   belongs_to :dish
   has_many :dish_previous_prices
+  
   after_create :create_price
   validates :price, :description, presence: true
 

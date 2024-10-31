@@ -49,8 +49,4 @@ describe 'Usuario adiciona uma porção a uma bebida' do
     expect(page).to have_content 'Lata'  
     expect(page).to have_content '20.12'       
   end
-  
-  it 'e il preço é adicioando ao historico de preços' do
-    
-  end
 end

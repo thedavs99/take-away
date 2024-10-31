@@ -22,7 +22,7 @@ describe 'usuario ve horario' do
     expect(page).to have_content 'Domingo 08:00 18:00'
   end
 
-  it 'e tenta ver horario de outro usuario' do
+  it 'e não pode ver horarios de outro usuario' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
     restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
