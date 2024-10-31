@@ -5,13 +5,13 @@ class Restaurant < ApplicationRecord
   has_many :dishes
   has_many :beverages
 
-  before_validation :generate_code
+  before_validation :generate_code, on: :create
   
   validates :cnpj, :admin, :email, uniqueness: true
   validates :brand_name, :corporate_name, :email, :cnpj, :telephone_number, :full_address, presence: true
-  validate :cnpj_is_valid?
   validates :email, format: {with: EMAIL_REGEX}
   validates :telephone_number, length: { minimum: 10, maximum: 11 }
+  validate :cnpj_is_valid?
 
 
   private
@@ -22,6 +22,6 @@ class Restaurant < ApplicationRecord
 
 
   def generate_code
-    self.code = SecureRandom.alphanumeric(6).upcase unless self.code != nil
+    self.code = SecureRandom.alphanumeric(6).upcase
   end
 end

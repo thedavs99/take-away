@@ -65,8 +65,9 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                     wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
-    Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
+    dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                 calories: 174, restaurant: restaurant)
+    marker = DishMark.create!(descrição: 'Com glutem', dish: dish)
     
 
     login_as(admin)
@@ -77,6 +78,7 @@ describe 'usuario ve todos os pratos do seu restaurante' do
     fill_in 'Nome', with: 'Risotto'
     fill_in 'Descrição', with: 'Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
     fill_in 'Calorias', with: '172.0'
+    select 'Com glutem', from: 'Caracteristica'
     click_on 'Enviar'
 
     expect(page).to have_content 'Descrição: Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
