@@ -25,7 +25,7 @@
 </section>
 
 <section>
-  <% @beverage.beverage_portions.each do |porcao| %>
-    <%= porcao.description%> preço: <%= porcao.price %>
+  <% @beverage.beverage_portions.each do |beverage_portion| %>
+    <%= link_to beverage_portion.description, beverage_beverage_portion_path(@beverage, beverage_portion) %> preço: <%= beverage_portion.price %>
   <% end %>
 </section>

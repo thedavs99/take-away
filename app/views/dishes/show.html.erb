@@ -25,7 +25,7 @@
 </section>
 
 <section>
-  <% @dish.dish_portions.each do |porcao| %>
-    <%= porcao.description%> preço: <%= porcao.price %>
+  <% @dish.dish_portions.each do |dish_portion| %>
+    <%=link_to dish_portion.description, dish_dish_portion_path(@dish, dish_portion) %> preço: <%= dish_portion.price %>
   <% end %>
 </section>

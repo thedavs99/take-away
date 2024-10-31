@@ -1,0 +1,27 @@
+<section>
+  <%= @dish_portion.description %> preço: <%= @dish_portion.price %>
+</section>
+
+<%= form_with(url: dish_dish_portion_dish_previous_prices_path(@dish, @dish_portion)) do |f| %>
+    <div>
+      <%= f.label(:price, 'Editar Preço') %>
+      <%= f.number_field :price, :step => "0.01" %>      
+    </div>
+     <%= f.submit "Atualizar Preço" %>
+<% end %>
+
+ <table>
+  <h3>Historico de preços</h3>
+  <tr>
+    <th>Preço</th>
+    <th>Date de Inicio</th>
+    <th>Data Final</th>
+  </tr>
+  <% @dish_portion.dish_previous_prices.each do |price_details|%>
+  <tr>
+    <td><%= price_details.price %></td>
+    <td><%= price_details.start_date %></td>
+    <td><%= price_details.end_date %></td>
+  </tr>
+  <% end %>
+</table> 

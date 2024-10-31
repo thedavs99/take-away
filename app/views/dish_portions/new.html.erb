@@ -5,7 +5,7 @@
   </div>
   <div>
   <%= f.label :price %>
-  <%= f.number_field :price %>
+  <%= f.number_field :price, :step => "0.01" %>    
   </div>
   <%= f.submit 'Gravar' %>
 <% end %>
