@@ -6,6 +6,8 @@
   <p>Opções encontradas: <%= @dishes.count%></p> 
 <% elsif @beverages.present? %>
   <p>Opções encontradas: <%= @beverages.count%></p>
+<% elsif @tag.dishes.present? %>
+  <p>Opções encontradas: <%= @tag.dishes.count%></p>
 <% end %>
 
 <% if @dishes.present? %>
@@ -17,6 +19,12 @@
 <% if @beverages.present? %>
   <% @beverages.each do | beverage |%>
     <%= link_to beverage.name, beverage_path(beverage) %> | <%= link_to 'Editar', edit_beverage_path(beverage) %>
+  <% end %>
+<% end %>
+
+<% if @tag.present? %>
+  <% @tag.dishes.each do | dish |%>
+    <%= link_to dish.name, dish_path(dish) %> |  <%= link_to 'Editar', edit_dish_path(dish) %>
   <% end %>
 <% end %>
 

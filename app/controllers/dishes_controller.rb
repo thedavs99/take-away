@@ -17,6 +17,7 @@ class DishesController < ApplicationController
     @dish.restaurant = current_admin.restaurant
     @dish.image.attach(params[:dish][:image]) 
     if @dish.save
+      
     redirect_to dishes_path, notice: 'Prato de Restaurante cadastrado'
 
     else
@@ -65,7 +66,7 @@ class DishesController < ApplicationController
   private
 
   def dish_params
-    params.require(:dish).permit(:name, :description, :calories)
+    params.require(:dish).permit(:name, :description, :calories, tag_ids: [])
   end
 
   def set_dish_and_check_restaurant

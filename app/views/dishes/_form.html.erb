@@ -12,8 +12,8 @@
     <%= f.number_field :calories %>
   </div>
   <div>
-    <%= f.label :tag_id, 'Caracteristica' %>
-    <%= f.collection_select :tag_id, current_admin.restaurant.tags, :id, :description %>
+    <%= f.label :tag_ids, 'Características' %>
+    <%= f.select :tag_ids, current_admin.restaurant.tags.collect { |tag| [tag.description, tag.id] }, { multiple: true } %>
   </div>
   <div>
     <%= f.label :image, 'Foto' %>

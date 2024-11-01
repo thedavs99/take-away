@@ -67,8 +67,8 @@ describe 'usuario edita um prato do seu restaurante' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
     dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                 calories: 174, restaurant: restaurant)
-    tag = Tag.create!(description: 'Com glutem', restaurant: restaurant)
-    Tagging.create!(dish: dish, tag: tag)
+    Tag.create!(description: 'Com glutem', restaurant: restaurant)
+    Tag.create!(description: 'Sem azucar', restaurant: restaurant)
     
 
     login_as(admin)
@@ -80,7 +80,8 @@ describe 'usuario edita um prato do seu restaurante' do
       fill_in 'Nome', with: 'Risotto'
       fill_in 'Descrição', with: 'Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
       fill_in 'Calorias', with: '172.0'
-      select 'Com glutem', from: 'Caracteristica'
+      select 'Com glutem', from: 'Características'
+      select 'Sem azucar', from: 'Características'
       click_on 'Enviar'      
     end
 
@@ -88,6 +89,7 @@ describe 'usuario edita um prato do seu restaurante' do
     expect(page).to have_content 'Descrição: Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
     expect(page).to have_content 'Calorias: 172.0 kcal'
     expect(page).to have_content 'Com glutem'
+    expect(page).to have_content 'Sem azucar'
   end
 
   it 'e não edita dos outros'  do

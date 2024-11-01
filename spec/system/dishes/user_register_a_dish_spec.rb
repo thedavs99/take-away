@@ -21,6 +21,7 @@ describe 'Usuario cadastra um prato' do
     expect(page).to have_content 'Cadastrar Prato'
     within '#dish' do
       expect(page).to have_field('Nome')  
+      expect(page).to have_field('Características') 
       expect(page).to have_field('Descrição') 
       expect(page).to have_field('Calorias')
     end
@@ -90,7 +91,7 @@ describe 'Usuario cadastra um prato' do
                     wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
-    tag = Tag.create!(description: 'Com glutem', restaurant: restaurant)
+    Tag.create!(description: 'Com glutem', restaurant: restaurant)
 
     login_as(admin)
     visit root_path
@@ -100,6 +101,7 @@ describe 'Usuario cadastra um prato' do
       fill_in 'Nome', with: 'Risotto'
       fill_in 'Descrição', with: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.'
       fill_in 'Calorias', with: '174' 
+      select 'Com glutem', from: 'Características'
       attach_file 'Foto', Rails.root.join('spec', 'support', 'risotto.jpeg')
       click_on 'Enviar'     
     end
@@ -107,5 +109,6 @@ describe 'Usuario cadastra um prato' do
 
     expect(page).to have_css('img[src*="risotto.jpeg"]')
     expect(page).to have_content('Status: Ativo')
+    expect(page).to have_content('Com glutem')
   end
 end
