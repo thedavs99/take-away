@@ -7,7 +7,6 @@ class DishPortionsController < ApplicationController
   end
 
   def create
-
     dish_portion_params = params.require(:dish_portion).permit(:description, :price)
     @dish_portion = @dish.dish_portions.build(dish_portion_params)
     if @dish.save
@@ -16,7 +15,6 @@ class DishPortionsController < ApplicationController
   end
 
   def show
-
     @dish_portion = DishPortion.find(params[:id])
   end
 

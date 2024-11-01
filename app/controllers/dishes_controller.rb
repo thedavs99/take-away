@@ -7,6 +7,8 @@ class DishesController < ApplicationController
   end  
 
   def new
+    @restaurant = current_admin.restaurant
+    @tag = Tag.new
     @dish = Dish.new
   end
 
@@ -20,13 +22,21 @@ class DishesController < ApplicationController
     else
       @dish.restaurant = nil
       flash.now[:alert] = 'Prato de Restaurante não cadastrado'
+      @restaurant = current_admin.restaurant
+      @tag = Tag.new
       render 'new', status: :unprocessable_entity
     end  
   end
 
-  def show;  end
+  def show
+    @restaurant = current_admin.restaurant
+    @tag = Tag.new
+  end
 
-  def edit; end
+  def edit
+    @restaurant = current_admin.restaurant
+    @tag = Tag.new
+  end
 
   def update
     if @dish.update(dish_params)

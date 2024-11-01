@@ -1,0 +1,9 @@
+<%= form_with(model: [@restaurant, @tag]) do |f| %>
+  <div>
+    <%= f.label :description, 'Descrição' %>
+    <%= f.text_field :description %>
+  </div>
+  <div>
+    <%= f.submit 'Enviar'%>
+  </div>
+<% end %>

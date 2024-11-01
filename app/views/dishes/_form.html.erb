@@ -12,6 +12,10 @@
     <%= f.number_field :calories %>
   </div>
   <div>
+    <%= f.label :tag_id, 'Caracteristica' %>
+    <%= f.collection_select :tag_id, current_admin.restaurant.tags, :id, :description %>
+  </div>
+  <div>
     <%= f.label :image, 'Foto' %>
     <%= f.file_field :image %>
   </div>

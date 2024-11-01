@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :restaurants, only: [ :new, :create, :show, :edit, :update ] do
     get "search", on: :collection
+    resources :tags, only: [:new, :create]
   end
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]
   resources :dishes, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do

@@ -13,6 +13,10 @@
         <dd><%= @dish.calories %> kcal</dd>
         <dt>Status:</dt>
         <dd><%= I18n.translate(@dish.status) %></dd>
+        <dt>Caracteristicas:</dt>
+        <% @dish.tags.each do |tag| %>
+          <dd><%= tag.description %></dd>
+        <% end %>
   </div>
   <% if @dish.active? %>
     <%= button_to 'Desativar', inactive_dish_path(@dish) %>
@@ -28,4 +32,8 @@
   <% @dish.dish_portions.each do |dish_portion| %>
     <%=link_to dish_portion.description, dish_dish_portion_path(@dish, dish_portion) %> preço: <%= dish_portion.price %>
   <% end %>
+</section>
+
+<section id="tag">
+<%= render template:'tags/new' %>
 </section>

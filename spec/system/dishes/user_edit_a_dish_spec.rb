@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'usuario ve todos os pratos do seu restaurante' do
+describe 'usuario edita um prato do seu restaurante' do
   it 'e deve estar autenticado' do
     visit edit_dish_path(1)
 
@@ -67,7 +67,8 @@ describe 'usuario ve todos os pratos do seu restaurante' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
     dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                 calories: 174, restaurant: restaurant)
-    marker = DishMark.create!(descrição: 'Com glutem', dish: dish)
+    tag = Tag.create!(description: 'Com glutem', restaurant: restaurant)
+    Tagging.create!(dish: dish, tag: tag)
     
 
     login_as(admin)
@@ -75,14 +76,18 @@ describe 'usuario ve todos os pratos do seu restaurante' do
     click_on 'Meus Pratos'
     click_on 'Risotto'
     click_on 'Editar'
-    fill_in 'Nome', with: 'Risotto'
-    fill_in 'Descrição', with: 'Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
-    fill_in 'Calorias', with: '172.0'
-    select 'Com glutem', from: 'Caracteristica'
-    click_on 'Enviar'
+    within '#dish' do
+      fill_in 'Nome', with: 'Risotto'
+      fill_in 'Descrição', with: 'Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
+      fill_in 'Calorias', with: '172.0'
+      select 'Com glutem', from: 'Caracteristica'
+      click_on 'Enviar'      
+    end
+
 
     expect(page).to have_content 'Descrição: Preparado com caldo de legumes, vinho branco, manteiga, queijo parmesão, e fungos.'
     expect(page).to have_content 'Calorias: 172.0 kcal'
+    expect(page).to have_content 'Com glutem'
   end
 
   it 'e não edita dos outros'  do
