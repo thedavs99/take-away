@@ -28,10 +28,7 @@ class DishesController < ApplicationController
     end  
   end
 
-  def show
-    @restaurant = current_admin.restaurant
-    @tag = Tag.new
-  end
+  def show;  end
 
   def edit
     @restaurant = current_admin.restaurant
