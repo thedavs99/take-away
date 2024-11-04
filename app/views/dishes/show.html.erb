@@ -1,35 +1,49 @@
-<section> 
-  <div>
-      <h3>Prato: <%= @dish.name  %></h3>
-      <dl>
-        <dt> 
-          <% if @dish.image.attached? %>
-            <img src="<%= url_for(@dish.image) %>" alt="Imagem">
+<section class="bg-slate-500">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+    <h2 class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white">Prato: <%= @dish.name  %></h2>
+    <p class="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-blue">         
+      <% if @dish.image.attached? %>
+        <img src="<%= url_for(@dish.image) %>" alt="Imagem" class="object-contain h-48 w-96">
+      <% end %></p>    
+    <dl>
+      <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Descrição:</dt>
+      <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @dish.description %></dd>
+      <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Calorias:</dt>
+      <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @dish.calories %> kcal</dd>
+    </dl>
+    <dl class="flex items-center space-x-6">
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Status:</dt>
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= I18n.translate(@dish.status) %></dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Caracteristicas:</dt>
+        
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400">
+          <% @dish.tags.each do |tag| %>
+            <%= tag.description %>
           <% end %>
-        </dt>
-        <dt>Descrição:</dt>
-        <dd><%= @dish.description %></dd>
-        <dt>Calorias:</dt>
-        <dd><%= @dish.calories %> kcal</dd>
-        <dt>Status:</dt>
-        <dd><%= I18n.translate(@dish.status) %></dd>
-        <dt>Caracteristicas:</dt>
-        <% @dish.tags.each do |tag| %>
-          <dd><%= tag.description %></dd>
+        </dd>  
+      </div>
+    </dl>
+      <div>
+      <% @dish.dish_portions.each do |dish_portion| %>
+        <%=link_to dish_portion.description, dish_dish_portion_path(@dish, dish_portion) %> preço: <%= dish_portion.price %>
+      <% end %>
+      </div>
+      <br/>
+      <div class="flex items-center space-x-4">
+        <% if @dish.active? %>
+          <%= button_to 'Desativar', inactive_dish_path(@dish), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+        <% else %>
+          <%= button_to 'Ativar', active_dish_path(@dish), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
         <% end %>
+        <%= link_to 'Adicionar porção', new_dish_dish_portion_path(@dish), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+        <%= link_to 'Editar', edit_dish_path(@dish), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+        <%= button_to 'Remover', dish_path(@dish), method: :delete,  class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+      </div>
+    <div class="flex flex-col space-y-4 sm:flex-row sm:space-y-0 sm:space-x-4">
   </div>
-  <% if @dish.active? %>
-    <%= button_to 'Desativar', inactive_dish_path(@dish) %>
-  <% else %>
-    <%= button_to 'Ativar', active_dish_path(@dish) %>
-  <% end %>
-  <%= link_to 'Adicionar porção', new_dish_dish_portion_path(@dish) %>
-  <%= link_to 'Editar', edit_dish_path(@dish)%>
-  <%= button_to 'Remover', dish_path(@dish), method: :delete %>
 </section>
 
-<section>
-  <% @dish.dish_portions.each do |dish_portion| %>
-    <%=link_to dish_portion.description, dish_dish_portion_path(@dish, dish_portion) %> preço: <%= dish_portion.price %>
-  <% end %>
-</section>
+

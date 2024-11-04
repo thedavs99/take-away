@@ -1,46 +1,46 @@
-<%= form_with(model: @restaurant_schedule) do |f| %>
-  <div>
-    <%= f.label :mon_open %>
-    <%= f.time_field :mon_open, value: @restaurant_schedule.mon_open.strftime("%H:%M") %>
-    <%= f.label :mon_close %>
-    <%= f.time_field :mon_close, value: @restaurant_schedule.mon_close.strftime("%H:%M")%>
+<%= form_with(model: @restaurant_schedule, class: "space-y-8") do |f| %>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :mon_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :mon_open, value: @restaurant_schedule.mon_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :mon_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :mon_close, value: @restaurant_schedule.mon_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"%>
   </div>
-  <div>
-    <%= f.label :tue_open %>
-    <%= f.time_field :tue_open, value: @restaurant_schedule.tue_open.strftime("%H:%M") %>
-    <%= f.label :tue_close %>
-    <%= f.time_field :tue_close, value: @restaurant_schedule.tue_close.strftime("%H:%M")%>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :tue_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :tue_open, value: @restaurant_schedule.tue_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :tue_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :tue_close, value: @restaurant_schedule.tue_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light"%>
   </div>
-  <div>
-    <%= f.label :wed_open %>
-    <%= f.time_field :wed_open, value: @restaurant_schedule.wed_open.strftime("%H:%M") %>
-    <%= f.label :wed_close %>
-    <%= f.time_field :wed_close, value: @restaurant_schedule.wed_close.strftime("%H:%M")%>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :wed_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :wed_open, value: @restaurant_schedule.wed_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :wed_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :wed_close, value: @restaurant_schedule.wed_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
   </div>
-  <div>
-    <%= f.label :thu_open %>
-    <%= f.time_field :thu_open, value: @restaurant_schedule.thu_open.strftime("%H:%M") %>
-    <%= f.label :thu_close %>
-    <%= f.time_field :thu_close, value: @restaurant_schedule.thu_close.strftime("%H:%M")%>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :thu_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :thu_open, value: @restaurant_schedule.thu_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :thu_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :thu_close, value: @restaurant_schedule.thu_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
   </div>
-  <div>
-    <%= f.label :fri_open %>
-    <%= f.time_field :fri_open, value: @restaurant_schedule.fri_open.strftime("%H:%M") %>
-    <%= f.label :fri_close %>
-    <%= f.time_field :fri_close, value: @restaurant_schedule.fri_close.strftime("%H:%M")%>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :fri_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :fri_open, value: @restaurant_schedule.fri_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :fri_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :fri_close, value: @restaurant_schedule.fri_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
   </div>
-  <div>
-    <%= f.label :sat_open %>
-    <%= f.time_field :sat_open, value: @restaurant_schedule.sat_open.strftime("%H:%M") %>
-    <%= f.label :sat_close %>
-    <%= f.time_field :sat_close, value: @restaurant_schedule.sat_close.strftime("%H:%M")%>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :sat_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :sat_open, value: @restaurant_schedule.sat_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :sat_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :sat_close, value: @restaurant_schedule.sat_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
   </div>
-  <div>
-    <%= f.label :sun_open %>
-    <%= f.time_field :sun_open, value: @restaurant_schedule.sun_open.strftime("%H:%M") %>
-    <%= f.label :sun_close %>
-    <%= f.time_field :sun_close, value: @restaurant_schedule.sun_close.strftime("%H:%M")%>
+  <div class="flex items-center gap-x-2">
+    <%= f.label :sun_open, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :sun_open, value: @restaurant_schedule.sun_open.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
+    <%= f.label :sun_close, class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.time_field :sun_close, value: @restaurant_schedule.sun_close.strftime("%H:%M"), class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
   </div>
-    <%= f.submit 'Enviar'%>
+    <%= f.submit 'Enviar', class: "w text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>

@@ -35,9 +35,6 @@
             <div> 
               <%= link_to 'Minhas Bebidas', beverages_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
             </div>              
-            <div> 
-              <%= link_to 'Adicionar Carateristica', new_restaurant_tag_path(current_admin.restaurant), class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
-            </div>   
             <div>
               <%= form_with url: search_restaurants_path, method: :get, class: "flex inline" do |f| %>
                 <%= f.label :query, "Opcções disponíveis", class: "text-sm font-medium text-gray-300" %>

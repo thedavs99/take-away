@@ -14,6 +14,7 @@ describe 'Usuario adiciona uma nuova característica' do
 
     login_as(admin)
     visit root_path
+    click_on 'Meus Pratos'
     click_on 'Adicionar Carateristica'
     fill_in 'Descrição', with: 'Com glutem' 
     click_on 'Enviar'
