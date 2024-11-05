@@ -1,0 +1,15 @@
+<%= @menu.name %>
+<% @menu.dishes.each do |dish| %>
+  <%= dish.name%>
+  <% dish.dish_portions.each do |dish_portion|%>
+    <%= dish_portion.description%>: <%= dish_portion.price%> 
+  <% end %>
+<% end %>
+
+<% @menu.beverages.each do |beverage| %>
+  <%= beverage.name%>
+  <% beverage.beverage_portions.each do |beverage_portion|%>
+    <%= beverage_portion.description%>: <%= beverage_portion.price%> 
+  <% end %>
+<% end %>
+

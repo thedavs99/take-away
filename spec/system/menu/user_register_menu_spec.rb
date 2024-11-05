@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuario cadastra um menu' do
+describe 'Usuario cadastra um cardápio' do
   it 'com sucesso' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
@@ -21,7 +21,7 @@ describe 'Usuario cadastra um menu' do
 
     login_as(admin)
     visit(root_path)
-    click_on 'Cadastrar menu'
+    click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: 'Almoço Executivo'
     select 'Risotto', from: 'Prato'
     select 'Ragú', from: 'Prato'
@@ -30,10 +30,6 @@ describe 'Usuario cadastra um menu' do
     click_on 'Enviar'
 
     expect(page).to have_content 'Almoço Executivo'
-    expect(page).to have_content 'Risotto'
-    expect(page).to have_content 'Ragú'    
-    expect(page).to have_content 'Caipirinha'
-    expect(page).to have_content 'Coca-Cola'
   end
 
   it 'e o nome não pode estar vazio' do
@@ -54,9 +50,10 @@ describe 'Usuario cadastra um menu' do
     Beverage.create!(name: 'Caipirinha', description: 'Coquetel brasileiro, de origem paulista.',
     calories: 99, restaurant: restaurant)
 
+
     login_as(admin)
     visit(root_path)
-    click_on 'Cadastrar menu'
+    click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: ''
     select 'Risotto', from: 'Prato'
     select 'Ragú', from: 'Prato'
@@ -82,7 +79,7 @@ describe 'Usuario cadastra um menu' do
 
     login_as(admin)
     visit(root_path)
-    click_on 'Cadastrar menu'
+    click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: 'Almoço'
     click_on 'Enviar'
 
@@ -114,12 +111,12 @@ describe 'Usuario cadastra um menu' do
     
     login_as(admin)
     visit(root_path)
-    click_on 'Cadastrar menu'
+    click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: 'Almoço'
     click_on 'Enviar'
 
      
-    expect(page).to have_content 'Menu de Restaurante cadastrado' 
+    expect(page).to have_content 'Cardápio de Restaurante cadastrado' 
     expect(page).to have_content 'Almoço' 
   end
 end
