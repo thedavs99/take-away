@@ -1,0 +1,14 @@
+<section class="bg-slate-500" id="dish">
+  <div class="max-w-screen-md mx-auto w-3/4 px-4 py-4">
+      <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Cadastrar Prato</h2>
+      <% if @menu.errors.any? %>
+        <ul>
+          <% @menu.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= render 'form' %>  
+  </div>
+</section>
+

@@ -5,6 +5,7 @@ class Restaurant < ApplicationRecord
   has_many :dishes
   has_many :beverages
   has_many :tags
+  has_many :menus
 
   before_validation :generate_code, on: :create
   

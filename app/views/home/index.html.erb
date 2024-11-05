@@ -1,0 +1,13 @@
+<% if current_admin %> 
+  <%= link_to 'Cadastrar menu', new_restaurant_menu_path(@restaurant.id) %>
+
+  <% @menus.each do |menu| %>
+    <%= menu.name %>
+    <% menu.dishes.each do |dish| %>
+      <%= dish.name %>
+    <% end %>
+    <% menu.beverages.each do |beverage| %>
+      <%= beverage.name %>
+    <% end %>
+  <% end %>
+<% end %>

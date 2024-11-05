@@ -1,0 +1,9 @@
+pt-BR:
+  activerecord:
+    models:
+      menu: Cardápio
+    attributes:
+      menu:
+        name: 'Nome'
+        dish_ids: 'Pratos'
+        beverage_ids: 'Bebidas'
