@@ -43,10 +43,10 @@ describe 'Usuario adiciona uma porção a um prato' do
     click_on 'Risotto'
     click_on 'Adicionar porção'
     fill_in 'Descrição', with: 'Uma pessoa'
-    fill_in 'Preço', with: '125.12'
+    fill_in 'Preço', with: '125'
     click_on 'Gravar'
     
     expect(page).to have_content 'Uma pessoa'  
-    expect(page).to have_content '125.12'   
+    expect(page).to have_content '125'   
   end
 end

@@ -14,7 +14,7 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
       beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                           restaurant: restaurant, status: :inactive)
-      BeveragePortion.create!(description: 'Lata', price: 20.12, beverage: beverage)
+      BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
     
       login_as(admin)
       visit root_path
@@ -24,7 +24,7 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
       
       within 'table' do
         expect(page).to have_content 'Historico de preços'   
-        expect(page).to have_content '20.12'   
+        expect(page).to have_content '20'   
       end
     end
       
@@ -41,7 +41,7 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
       beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                           restaurant: restaurant, status: :inactive)
-      BeveragePortion.create!(description: 'Lata', price: 20.12, beverage: beverage)
+      BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
       travel_to(Time.new(2008, 12, 24, 00, 04, 44))
 
       login_as(admin)
@@ -49,15 +49,15 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
       click_on 'Minhas Bebidas'
       click_on 'Coca-Cola'
       click_on 'Lata'
-      fill_in 'Editar Preço', with: 20.25
+      fill_in 'Editar Preço', with: 22
       click_on "Atualizar Preço"
       click_on 'Lata'
 
       within 'table' do
         expect(page).to have_content '2004-11-24'
         expect(page).to have_content '2008-12-24'
-        expect(page).to have_content '20.25'  
-        expect(page).to have_content '20.12' 
+        expect(page).to have_content '22'  
+        expect(page).to have_content '20' 
       end    
     end
 
@@ -104,7 +104,7 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
       dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                         calories: 174, restaurant: restaurant)
-      DishPortion.create!(description: 'Uma pessoa', price: 125.12, dish: dish)
+      DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
     
       login_as(admin)
       visit root_path
@@ -114,7 +114,7 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
     
       within 'table' do
         expect(page).to have_content 'Historico de preços'   
-        expect(page).to have_content '125.12'   
+        expect(page).to have_content '125'   
       end 
     end
 
@@ -131,7 +131,7 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
                           sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
       dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                           calories: 174, restaurant: restaurant)
-      DishPortion.create!(description: 'Uma pessoa', price: 125.12, dish: dish)
+      DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
       first_date = Time.zone.today
       travel_to(Time.new(2008, 12, 24, 00, 04, 44))
 
@@ -140,15 +140,15 @@ describe 'Usuario ve o primeiro preço no historico de preços' do
       click_on 'Meus Pratos'
       click_on 'Risotto'
       click_on 'Uma pessoa'
-      fill_in 'Editar Preço', with: 120.25
+      fill_in 'Editar Preço', with: 120
       click_on "Atualizar Preço"
       click_on 'Uma pessoa'
 
       within 'table' do
         expect(page).to have_content '2004-11-24'
         expect(page).to have_content '2008-12-24'
-        expect(page).to have_content '120.25'  
-        expect(page).to have_content '125.12' 
+        expect(page).to have_content '120'  
+        expect(page).to have_content '125' 
       end
     end
 

@@ -23,8 +23,8 @@ describe 'Usuario ve detalhes de um cardápio' do
     Item.create!(menu: menu, dish: dish_a)
     Item.create!(menu: menu, beverage: beverage_b)
     Item.create!(menu: menu, dish: dish_b)
-    BeveragePortion.create!(description: 'Lata', price: 20.12, beverage: beverage_a)
-    DishPortion.create!(description: 'Uma pessoa', price: 125.12, dish: dish_b)
+    BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
+    DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
 
     login_as(admin)
     visit root_path
@@ -32,9 +32,9 @@ describe 'Usuario ve detalhes de um cardápio' do
 
     expect(page).to have_content 'Risotto'
     expect(page).to have_content 'Ragú'
-    expect(page).to have_content 'Uma pessoa: 125.12'
+    expect(page).to have_content 'Uma pessoa: 125'
     expect(page).to have_content 'Coca-Cola'
-    expect(page).to have_content 'Lata: 20.12'
+    expect(page).to have_content 'Lata: 20'
     expect(page).to have_content 'Caipirinha'
   end
 

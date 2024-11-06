@@ -13,7 +13,7 @@ describe 'Usuario edita preço de uma bebida' do
                       sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                         restaurant: restaurant, status: :inactive)
-    BeveragePortion.create!(description: 'Lata', price: 20.12, beverage: beverage)
+    BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
   
     login_as(admin)
     visit root_path
@@ -36,16 +36,16 @@ describe 'Usuario edita preço de uma bebida' do
                       sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     beverage = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                         restaurant: restaurant, status: :inactive)
-    BeveragePortion.create!(description: 'Lata', price: 20.12, beverage: beverage)
+    BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
   
     login_as(admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Coca-Cola'
     click_on 'Lata'
-    fill_in 'Editar Preço', with: 22.12
+    fill_in 'Editar Preço', with: 22
     click_on "Atualizar Preço"
 
-    expect(page).to have_content '22.12'    
+    expect(page).to have_content '22'    
   end
 end

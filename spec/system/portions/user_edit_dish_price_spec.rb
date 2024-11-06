@@ -13,7 +13,7 @@ describe 'Usuario edita preço de um prato' do
                       sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                       calories: 174, restaurant: restaurant)
-    DishPortion.create!(description: 'Uma pessoa', price: 125.12, dish: dish)
+    DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
   
     login_as(admin)
     visit root_path
@@ -36,16 +36,16 @@ describe 'Usuario edita preço de um prato' do
                       sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     dish = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                       calories: 174, restaurant: restaurant)
-    DishPortion.create!(description: 'Uma pessoa', price: 125.12, dish: dish)
+    DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
   
     login_as(admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'
     click_on 'Uma pessoa'
-    fill_in 'Editar Preço', with: 120.25
+    fill_in 'Editar Preço', with: 120
     click_on "Atualizar Preço"
 
-    expect(page).to have_content '120.25'
+    expect(page).to have_content '120'
   end
 end

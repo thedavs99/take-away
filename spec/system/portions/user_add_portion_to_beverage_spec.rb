@@ -43,10 +43,10 @@ describe 'Usuario adiciona uma porção a uma bebida' do
     click_on 'Coca-Cola'
     click_on 'Adicionar porção'
     fill_in 'Descrição', with: 'Lata'
-    fill_in 'Preço', with: '20.12'
+    fill_in 'Preço', with: '20'
     click_on 'Gravar'
     
     expect(page).to have_content 'Lata'  
-    expect(page).to have_content '20.12'       
+    expect(page).to have_content '20'       
   end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_05_155241) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_122634) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -57,20 +57,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_155241) do
 
   create_table "beverage_portions", force: :cascade do |t|
     t.string "description"
-    t.float "price"
     t.integer "beverage_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["beverage_id"], name: "index_beverage_portions_on_beverage_id"
   end
 
   create_table "beverage_previous_prices", force: :cascade do |t|
-    t.float "price"
     t.date "start_date"
     t.date "end_date"
     t.integer "beverage_portion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["beverage_portion_id"], name: "index_beverage_previous_prices_on_beverage_portion_id"
   end
 
@@ -87,20 +87,20 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_05_155241) do
 
   create_table "dish_portions", force: :cascade do |t|
     t.string "description"
-    t.float "price"
     t.integer "dish_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["dish_id"], name: "index_dish_portions_on_dish_id"
   end
 
   create_table "dish_previous_prices", force: :cascade do |t|
-    t.float "price"
     t.date "start_date"
     t.date "end_date"
     t.integer "dish_portion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "price"
     t.index ["dish_portion_id"], name: "index_dish_previous_prices_on_dish_portion_id"
   end
 
