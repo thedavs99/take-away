@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_122634) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -136,6 +136,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_122634) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
+  create_table "orderables", force: :cascade do |t|
+    t.integer "dish_portion_id"
+    t.integer "beverage_portion_id"
+    t.integer "order_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "quantity"
+    t.index ["beverage_portion_id"], name: "index_orderables_on_beverage_portion_id"
+    t.index ["dish_portion_id"], name: "index_orderables_on_dish_portion_id"
+    t.index ["order_id"], name: "index_orderables_on_order_id"
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.string "name"
+    t.string "telephone_number"
+    t.string "email"
+    t.string "cpf"
+    t.integer "status", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "restaurant_schedules", force: :cascade do |t|
     t.time "mon_open"
     t.datetime "created_at", null: false
@@ -200,6 +222,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_122634) do
   add_foreign_key "items", "dishes"
   add_foreign_key "items", "menus"
   add_foreign_key "menus", "restaurants"
+  add_foreign_key "orderables", "beverage_portions"
+  add_foreign_key "orderables", "dish_portions"
+  add_foreign_key "orderables", "orders"
   add_foreign_key "restaurant_schedules", "restaurants"
   add_foreign_key "restaurants", "admins"
   add_foreign_key "taggings", "dishes"

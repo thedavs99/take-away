@@ -18,7 +18,9 @@ Rails.application.routes.draw do
     resources :tags, only: [:new, :create]
     resources :menus, only: [:new, :create, :show]
   end
+
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]
+
   resources :dishes, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
     post 'inactive', on: :member 
     post 'active', on: :member
@@ -26,11 +28,17 @@ Rails.application.routes.draw do
       resources :dish_previous_prices, only: [ :create ]
     end
   end
+
   resources :beverages, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
     post 'inactive', on: :member 
     post 'active', on: :member
     resources :beverage_portions, only: [ :new, :create, :show ] do 
       resources :beverage_previous_prices, only: [ :create ]
     end
+  end
+
+  resources :order, only: [:new, :create, :show ] do
+    post 'add', on: :member 
+    post 'remove', on: :member
   end
 end
