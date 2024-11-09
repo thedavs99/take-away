@@ -2,7 +2,15 @@ class ApplicationController < ActionController::Base
   # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
   allow_browser versions: :modern
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :initialize_cart
 
+  def initialize_cart
+    @cart ||= Cart.find_by(id: session[:cart_id])
+    if @cart.nil?
+      @cart = Cart.create
+      session[:cart_id] = @cart.id
+    end
+  end
 
   private
 
@@ -16,6 +24,4 @@ class ApplicationController < ActionController::Base
       redirect_to new_restaurant_schedule_path if current_admin.restaurant.restaurant_schedule.nil?
     end      
   end
-
-
 end

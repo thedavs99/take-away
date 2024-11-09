@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_07_211044) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -85,6 +85,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
     t.index ["restaurant_id"], name: "index_beverages_on_restaurant_id"
   end
 
+  create_table "carts", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dish_portions", force: :cascade do |t|
     t.string "description"
     t.integer "dish_id", null: false
@@ -123,7 +128,9 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
     t.string "dish"
     t.integer "dish_id"
     t.integer "beverage_id"
+    t.integer "cart_id"
     t.index ["beverage_id"], name: "index_items_on_beverage_id"
+    t.index ["cart_id"], name: "index_items_on_cart_id"
     t.index ["dish_id"], name: "index_items_on_dish_id"
     t.index ["menu_id"], name: "index_items_on_menu_id"
   end
@@ -136,16 +143,28 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
     t.index ["restaurant_id"], name: "index_menus_on_restaurant_id"
   end
 
-  create_table "orderables", force: :cascade do |t|
-    t.integer "dish_portion_id"
+  create_table "orderable_beverages", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "cart_id"
+    t.integer "order_id"
     t.integer "beverage_portion_id"
-    t.integer "order_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["beverage_portion_id"], name: "index_orderable_beverages_on_beverage_portion_id"
+    t.index ["cart_id"], name: "index_orderable_beverages_on_cart_id"
+    t.index ["order_id"], name: "index_orderable_beverages_on_order_id"
+  end
+
+  create_table "orderable_dishes", force: :cascade do |t|
     t.integer "quantity"
-    t.index ["beverage_portion_id"], name: "index_orderables_on_beverage_portion_id"
-    t.index ["dish_portion_id"], name: "index_orderables_on_dish_portion_id"
-    t.index ["order_id"], name: "index_orderables_on_order_id"
+    t.integer "cart_id"
+    t.integer "order_id"
+    t.integer "dish_portion_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["cart_id"], name: "index_orderable_dishes_on_cart_id"
+    t.index ["dish_portion_id"], name: "index_orderable_dishes_on_dish_portion_id"
+    t.index ["order_id"], name: "index_orderable_dishes_on_order_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -156,6 +175,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
     t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "restaurant_id", null: false
+    t.index ["restaurant_id"], name: "index_orders_on_restaurant_id"
   end
 
   create_table "restaurant_schedules", force: :cascade do |t|
@@ -219,12 +240,17 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_06_145257) do
   add_foreign_key "dish_previous_prices", "dish_portions"
   add_foreign_key "dishes", "restaurants"
   add_foreign_key "items", "beverages"
+  add_foreign_key "items", "carts"
   add_foreign_key "items", "dishes"
   add_foreign_key "items", "menus"
   add_foreign_key "menus", "restaurants"
-  add_foreign_key "orderables", "beverage_portions"
-  add_foreign_key "orderables", "dish_portions"
-  add_foreign_key "orderables", "orders"
+  add_foreign_key "orderable_beverages", "beverage_portions"
+  add_foreign_key "orderable_beverages", "carts"
+  add_foreign_key "orderable_beverages", "orders"
+  add_foreign_key "orderable_dishes", "carts"
+  add_foreign_key "orderable_dishes", "dish_portions"
+  add_foreign_key "orderable_dishes", "orders"
+  add_foreign_key "orders", "restaurants"
   add_foreign_key "restaurant_schedules", "restaurants"
   add_foreign_key "restaurants", "admins"
   add_foreign_key "taggings", "dishes"

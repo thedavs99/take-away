@@ -1,0 +1,38 @@
+<% @cart.orderable_dishes.each do |orderable_dish|  %>
+  <% dish_portion = orderable_dish.dish_portion%>
+  <div style="display:flex;space-between;margin: 0em 5em;">
+    <%= dish_portion.dish.name %>
+    <%= dish_portion.description %>
+    <%= dish_portion.price %> x <%= orderable_dish.quantity %>
+    <%= form_with(url: add_dish_cart_path(dish_portion)) do |f| %>
+      <%= f.hidden_field :id, value: dish_portion.id %>
+      <%= f.number_field :quantity, class: 'w-1/2 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none' %>
+      <%= f.submit 'Adicionar ao pedido', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
+    <% end %> 
+    <%= form_with(url: remove_dish_cart_path(orderable_dish)) do |f| %>
+      <%= f.hidden_field :id, value: orderable_dish.id %>
+      <%= f.submit 'X', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
+    <% end %> 
+    <strong>Total: <%= orderable_dish.total %></strong>    
+  </div>
+<% end %>
+
+<% @cart.orderable_beverages.each do |orderable_beverage|  %>
+  <% beverage_portion = orderable_beverage.beverage_portion%>
+  <div style="display:flex;space-between;margin: 0em 5em;">
+    <%= beverage_portion.beverage.name %>
+    <%= beverage_portion.description %>
+    <%= beverage_portion.price %> x <%= orderable_beverage.quantity %>
+    <%= form_with(url: add_beverage_cart_path(beverage_portion)) do |f| %>
+      <%= f.hidden_field :id, value: beverage_portion.id %>
+      <%= f.number_field :quantity, class: 'w-1/2 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none' %>
+      <%= f.submit 'Adicionar ao pedido', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
+    <% end %> 
+    <%= form_with(url: remove_beverage_cart_path(orderable_beverage)) do |f| %>
+      <%= f.hidden_field :id, value: orderable_beverage.id %>
+      <%= f.submit 'X', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
+    <% end %> 
+    <strong>Total: <%= orderable_beverage.total %></strong>
+    
+  </div>
+<% end %>

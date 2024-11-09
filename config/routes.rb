@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get "search", on: :collection
     resources :tags, only: [:new, :create]
     resources :menus, only: [:new, :create, :show]
+    resources :orders, only: [:index, :new, :create, :show]
   end
 
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]
@@ -37,8 +38,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :order, only: [:new, :create, :show ] do
-    post 'add', on: :member 
-    post 'remove', on: :member
+  resources :carts, only: [ :show ] do
+    post 'add_dish', on: :member
+    post 'remove_dish', on: :member
+    post 'add_beverage', on: :member
+    post 'remove_beverage', on: :member
   end
 end

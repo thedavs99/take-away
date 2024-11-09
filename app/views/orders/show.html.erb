@@ -1,0 +1,46 @@
+<section class="bg-slate-500">
+  <div class="py-8 px-4 mx-auto max-w-2xl lg:py-16">
+    <h2 class="mb-2 text-xl font-semibold leading-none text-gray-900 md:text-2xl dark:text-white">Order Code</h2>
+    <p class="mb-4 text-xl font-extrabold leading-none text-gray-900 md:text-2xl dark:text-blue">         
+    <dl>
+      <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Nome:</dt>
+      <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @order.name %></dd>
+      <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Email:</dt>
+      <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @order.email %></dd>
+    </dl>
+    <dl class="flex items-center space-x-6">
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">CPF:</dt>
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @order.cpf %></dd>
+      </div>
+      <div>
+        <dt class="mb-2 font-semibold leading-none text-gray-900 dark:text-white">Telefone:</dt>
+        <dd class="mb-4 font-light text-black-500 sm:mb-5 dark:text-black-400"><%= @order.telephone_number %></dd>
+      </div>
+    </dl>
+    <div>
+      <% @order.orderable_dishes.each do |orderable_dish|  %>
+        <% dish_portion = orderable_dish.dish_portion%>
+        <div style="display:flex;space-between;margin: 0em 5em;">
+          <%= dish_portion.dish.name %>
+          <%= dish_portion.description %>
+          <%= dish_portion.price %> x <%= orderable_dish.quantity %>
+          <strong>Total: <%= orderable_dish.total %></strong>    
+        </div>
+      <% end %>
+
+      <% @order.orderable_beverages.each do |orderable_beverage|  %>
+        <% beverage_portion = orderable_beverage.beverage_portion%>
+        <div style="display:flex;space-between;margin: 0em 5em;">
+          <%= beverage_portion.beverage.name %>
+          <%= beverage_portion.description %>
+          <%= beverage_portion.price %> x <%= orderable_beverage.quantity %>
+          <strong>Total: <%= orderable_beverage.total %></strong>                
+        </div>
+      <% end %>
+    </div>
+    <strong>Total: <%= @order.total %></strong>
+  </div>
+</section>
+
+

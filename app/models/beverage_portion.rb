@@ -1,8 +1,8 @@
 class BeveragePortion < ApplicationRecord
   belongs_to :beverage
   has_many :beverage_previous_prices
-  has_many :orderables
-  has_many :orders, through: :orderables
+  has_many :orderable_dishes
+  has_many :carts, through: :orderable_dishes
   
   after_create :create_price
   validates :price, :description, presence: true
