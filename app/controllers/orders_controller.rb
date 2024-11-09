@@ -26,7 +26,8 @@ class OrdersController < ApplicationController
       session[:cart_id] = nil
       redirect_to restaurant_order_path(@restaurant, @order)
     else
-      render :new, alert: 'Error ao criar o pedido'      
+      flash.now[:alert] = 'Error ao criar o pedido'
+      render :new     
     end
   end
 

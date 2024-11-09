@@ -19,6 +19,7 @@ describe 'Usuario registra um pedido' do
     Item.create!(menu: menu, dish: dish_b)
     beverage_portion = BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
     dish_portion = DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
+    allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
 
     login_as(admin)
     visit root_path
@@ -38,10 +39,12 @@ describe 'Usuario registra um pedido' do
     fill_in 'CPF', with: '04337878050'
     click_on 'Enviar'
 
+    expect(page).to have_content 'Pedido: ABC12345'
     expect(page).to have_content 'Carlos Suarez'
     expect(page).to have_content 'carlos@email.com'
     expect(page).to have_content '11923451234'
     expect(page).to have_content '04337878050'
+    expect(page).to have_content 'Status: Aguardando confirmação da cozinha'
     expect(page).to have_content 'Coca-Cola'
     expect(page).to have_content 'Lata'
     expect(page).to have_content '20 x 1'
@@ -88,6 +91,7 @@ describe 'Usuario registra um pedido' do
     fill_in 'CPF', with: '04337878050'
     click_on 'Enviar'
 
-    expect(page).to have_content 'Pedido não é valido Por favor, preencha o campo de telefone ou o campo de e-mail.'
+    expect(page).to have_content 'Error ao criar o pedido'
+    expect(page).to have_content 'Por favor, preencha o campo de telefone ou o campo de e-mail.'
   end
 end
