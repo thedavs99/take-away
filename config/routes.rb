@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:new, :create]
     resources :menus, only: [:new, :create, :show]
     resources :orders, only: [:index, :new, :create, :show]
-    resources :users, only: [ :new, :create ]
+    resources :users, only: [ :index, :new, :create ]
   end
 
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]

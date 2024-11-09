@@ -1,0 +1,36 @@
+<div class="m-4 relative overflow-x-auto flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">
+          E-mail    
+        </th>
+        <th scope="col" class="px-6 py-3">
+          CPF
+        </th>
+        <th scope="col" class="px-6 py-3">
+          Status
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+          <td class="px-6 py-4">
+            <%= user.email %>
+          </td>
+          <td class="px-6 py-4">
+            <%= user.cpf %>
+          </td>
+          <td class="px-6 py-4">
+            <%= I18n.translate(user.status) %>
+          </td>                
+        </tr>
+      <% end %>
+    </tbody>
+  </table>     
+  <br/>
+  <div>
+    <%= link_to 'Adicionar Usuario', new_restaurant_user_path(current_admin.restaurant), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+  </div>
+</div>

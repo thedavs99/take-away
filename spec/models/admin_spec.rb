@@ -83,7 +83,7 @@ RSpec.describe Admin, type: :model do
       email: 'david@email.com', password: '123456789123')
 
         # Assert 
-      expect(admin.restaurant_owner).to be_truthy
+      expect(admin.admin_type).to eq 'owner'
     end
   end
 end

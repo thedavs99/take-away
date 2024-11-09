@@ -10,10 +10,12 @@ class Admin < ApplicationRecord
   validate :cpf_is_valid?
   validates :cpf, uniqueness: true
 
-  after_create :register_as_an_owner
+  after_create :set_worker
 
 
   has_one :restaurant
+
+  enum admin_type: { worker: 0, owner: 2 }
 
   private
   def cpf_is_valid?
@@ -22,7 +24,12 @@ class Admin < ApplicationRecord
     end
   end
 
-  def register_as_an_owner
-    self.restaurant_owner = true
+  def set_worker
+    user = User.find_by(email: self.email, cpf: self.cpf)
+    if user
+      user.active!
+      self.worker!
+      self.restaurant = user.restaurant
+    end    
   end
 end

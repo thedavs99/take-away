@@ -27,25 +27,27 @@
         <% if admin_signed_in? %> 
           <% unless current_admin.restaurant.nil? %>
             <div>    
-              <%= link_to 'Meus Pratos', dishes_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+              <%= link_to 'Meus Pratos', dishes_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" if current_admin.owner? %>
             </div>     
             <div> 
-              <%= link_to 'Meu Restaurante', current_admin.restaurant, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white"%>
+              <%= link_to 'Meu Restaurante', current_admin.restaurant, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
             </div>   
             <div> 
-              <%= link_to 'Minhas Bebidas', beverages_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+              <%= link_to 'Minhas Bebidas', beverages_path, class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" if current_admin.owner?%>
             </div> 
             <div> 
-              <%= link_to 'Adicionar Usuario', new_restaurant_user_path(current_admin.restaurant), class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+              <%= link_to 'Usuarios', restaurant_users_path(current_admin.restaurant), class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" if current_admin.owner?%>
             </div>
             <div> 
-              <%= link_to 'Meus Pedidos', restaurant_orders_path(current_admin.restaurant), class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+              <%= link_to 'Meus Pedidos', restaurant_orders_path(current_admin.restaurant), class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" if current_admin.owner?%>
             </div>                    
             <div>
-              <%= form_with url: search_restaurants_path, method: :get, class: "flex inline" do |f| %>
-                <%= f.label :query, "Opcções disponíveis", class: "text-sm font-medium text-gray-300" %>
-                <%= f.text_field :query, class: "block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-                <%= f.submit "Buscar", class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+              <% if current_admin.owner? %>
+                <%= form_with url: search_restaurants_path, method: :get, class: "flex inline" do |f| %>
+                  <%= f.label :query, "Opcções disponíveis", class: "text-sm font-medium text-gray-300" %>
+                  <%= f.text_field :query, class: "block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+                  <%= f.submit "Buscar", class: "rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" %>
+                <% end %>
               <% end %>
             </div>
           <% end %>

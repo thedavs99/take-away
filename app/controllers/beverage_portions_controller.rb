@@ -11,7 +11,6 @@ class BeveragePortionsController < ApplicationController
     beverage_portion_params = params.require(:beverage_portion).permit(:description, :price)
     @beverage.beverage_portions.build(beverage_portion_params)
     if @beverage.save
-
       redirect_to @beverage
     end
   end
