@@ -1,0 +1,12 @@
+pt-BR:
+  activerecord:
+    models:
+      admin: Administrador
+    attributes:
+      admin:
+        login: "Entrár"
+        cpf: 'CPF'
+        name: 'Nome'
+        last_name: 'Sobrenome'
+        email: 'E-mail'
+        password: 'Senha'

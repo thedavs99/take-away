@@ -1,12 +1,8 @@
 pt-BR:
   activerecord:
     models:
-      admin: Administrador
+      user: Usuario
     attributes:
-      admin:
-        login: "Entrár"
+      user:
         cpf: 'CPF'
-        name: 'Nome'
-        last_name: 'Sobrenome'
         email: 'E-mail'
-        password: 'Senha'

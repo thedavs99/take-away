@@ -1,0 +1,26 @@
+<div class="m-4 relative overflow-x-auto flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                  Pedido
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Status
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @orders.each do |order| %>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-6 py-4">
+                  <%= link_to "Pedido: #{order.code}", restaurant_order_path(@restaurant, order), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline"  %>
+                </td>
+                <td class="px-6 py-4">
+                  <%= I18n.translate(order.status) %>
+                </td>                
+              </tr>
+            <% end %>
+        </tbody>
+    </table>
+</div>

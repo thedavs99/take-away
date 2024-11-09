@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuario se cadastra' do
+describe 'Administrador se cadastra' do
   it 'com sucesso' do
     # Arrange
     # Act

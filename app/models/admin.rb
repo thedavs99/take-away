@@ -17,7 +17,7 @@ class Admin < ApplicationRecord
 
   private
   def cpf_is_valid?
-    unless CPF.valid?(cpf)
+    unless CPF.valid?(self.cpf)
       errors.add(:cpf, 'não é válido')
     end
   end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuário se auntentica' do
+describe 'Administrador se auntentica' do
   it 'com sucesso' do
     # Arrange
     Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
