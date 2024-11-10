@@ -12,7 +12,7 @@ describe 'Administrador ve horario' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meu Restaurante'
     click_on 'Meu Hórario'
@@ -43,7 +43,7 @@ describe 'Administrador ve horario' do
                       fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                       sun_open: '08:00', sun_close: '18:00', restaurant: second_restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit restaurant_schedule_path(second_restaurant_schedule)
 
     expect(current_path).to eq(restaurant_schedule_path(restaurant_schedule))

@@ -19,7 +19,7 @@ describe 'Administrador cadastra um cardápio' do
     Beverage.create!(name: 'Caipirinha', description: 'Coquetel brasileiro, de origem paulista.',
     calories: 99, restaurant: restaurant)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit(root_path)
     click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: 'Almoço Executivo'
@@ -51,7 +51,7 @@ describe 'Administrador cadastra um cardápio' do
     calories: 99, restaurant: restaurant)
 
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit(root_path)
     click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: ''
@@ -77,7 +77,7 @@ describe 'Administrador cadastra um cardápio' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
     Menu.create!(name: 'Almoço', restaurant: restaurant)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit(root_path)
     click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: 'Almoço'
@@ -109,7 +109,7 @@ describe 'Administrador cadastra um cardápio' do
                   sun_open: '08:00', sun_close: '18:00', restaurant: second_restaurant )
     Menu.create!(name: 'Almoço', restaurant: second_restaurant)
     
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit(root_path)
     click_on 'Cadastrar cardápio'
     fill_in 'Nome', with: 'Almoço'

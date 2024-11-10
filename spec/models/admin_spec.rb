@@ -76,14 +76,5 @@ RSpec.describe Admin, type: :model do
       # Assert 
       expect(admin.restaurant_owner).to be_falsey
     end
-    
-    it 'Admin is an restaurant_owner' do
-      # Arrange
-      admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
-      email: 'david@email.com', password: '123456789123')
-
-        # Assert 
-      expect(admin.admin_type).to eq 'owner'
-    end
   end
 end

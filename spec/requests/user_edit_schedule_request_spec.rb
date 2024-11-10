@@ -23,7 +23,7 @@ describe 'Usuario edita um pedido' do
 
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     patch(restaurant_schedule_path(second_restaurant_schedule.id), params: { restaurant_schedule: { wed_close: '19:00' } })
 
     # Assert

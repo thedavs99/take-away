@@ -15,7 +15,7 @@ describe 'Administrador apaga um restaurante' do
                 calories: 174, restaurant: restaurant)
     
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'

@@ -26,7 +26,7 @@ describe 'Administrador adiciona um prato o bebida no carrinho' do
     beverage_portion = BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
     dish_portion = DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Almoço'
     within("##{dish_portion.id}-dish") do
@@ -68,7 +68,7 @@ describe 'Administrador adiciona um prato o bebida no carrinho' do
     Item.create!(menu: menu, dish: dish_a)
     dish_portion = DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_a)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Almoço'
     within("##{dish_portion.id}-dish") do

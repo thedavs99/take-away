@@ -14,7 +14,7 @@ describe 'Administrador adiciona uma porção a um prato' do
     Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                       calories: 174, restaurant: restaurant)
   
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'
@@ -37,7 +37,7 @@ describe 'Administrador adiciona uma porção a um prato' do
     Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                       calories: 174, restaurant: restaurant)
   
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'

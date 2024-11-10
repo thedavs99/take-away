@@ -25,7 +25,7 @@ describe 'Usuario atualiza um prato' do
 
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     post(active_dish_path(dish.id))
 
     # Assert

@@ -14,16 +14,16 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @workers.each do |worker| %>
         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
           <td class="px-6 py-4">
-            <%= user.email %>
+            <%= worker.email %>
           </td>
           <td class="px-6 py-4">
-            <%= user.cpf %>
+            <%= worker.cpf %>
           </td>
           <td class="px-6 py-4">
-            <%= I18n.translate(user.status) %>
+            <%= I18n.translate(worker.status) %>
           </td>                
         </tr>
       <% end %>
@@ -31,6 +31,6 @@
   </table>     
   <br/>
   <div>
-    <%= link_to 'Adicionar Usuario', new_restaurant_user_path(current_admin.restaurant), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+    <%= link_to 'Adicionar Trabalhador', new_restaurant_worker_path(current_admin.restaurant), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
   </div>
 </div>

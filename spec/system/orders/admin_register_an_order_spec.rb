@@ -21,7 +21,7 @@ describe 'Administrador registra um pedido' do
     dish_portion = DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
     allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Almoço'
     within("##{dish_portion.id}-dish") do
@@ -73,7 +73,7 @@ describe 'Administrador registra um pedido' do
     beverage_portion = BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
     dish_portion = DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Almoço'
     within("##{dish_portion.id}-dish") do

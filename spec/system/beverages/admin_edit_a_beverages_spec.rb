@@ -11,7 +11,7 @@ describe 'Administrador ve todas as bebidas do seu restaurante' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit edit_beverage_path(1)
 
     expect(current_path).to have_content new_restaurant_path
@@ -24,7 +24,7 @@ describe 'Administrador ve todas as bebidas do seu restaurante' do
                     full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
                     email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit edit_beverage_path(1)
                 
     expect(current_path).to have_content new_restaurant_schedule_path    
@@ -43,7 +43,7 @@ describe 'Administrador ve todas as bebidas do seu restaurante' do
     Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
     
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Coca-Cola'
@@ -67,7 +67,7 @@ describe 'Administrador ve todas as bebidas do seu restaurante' do
     Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
     
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Coca-Cola'
@@ -105,7 +105,7 @@ describe 'Administrador ve todas as bebidas do seu restaurante' do
                                         calories: 99, restaurant: second_restaurant)
     
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit edit_beverage_path(second_beverage)
 
     expect(current_path).to eq root_path

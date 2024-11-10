@@ -15,7 +15,7 @@ describe 'Administrador edita preço de um prato' do
                       calories: 174, restaurant: restaurant)
     DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
   
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'
@@ -38,7 +38,7 @@ describe 'Administrador edita preço de um prato' do
                       calories: 174, restaurant: restaurant)
     DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
   
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'

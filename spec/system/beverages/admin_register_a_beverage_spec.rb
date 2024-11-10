@@ -12,7 +12,7 @@ describe 'Administrador cadastra uma bebida' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Cadastrar'
@@ -34,7 +34,7 @@ describe 'Administrador cadastra uma bebida' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Cadastrar'
@@ -57,7 +57,7 @@ describe 'Administrador cadastra uma bebida' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Cadastrar'
@@ -83,7 +83,7 @@ describe 'Administrador cadastra uma bebida' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Cadastrar'

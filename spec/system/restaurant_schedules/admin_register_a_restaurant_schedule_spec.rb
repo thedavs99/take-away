@@ -9,7 +9,7 @@ describe 'Administrador cadastra um horario' do
                     full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
                     email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
 
     # Assert
@@ -31,7 +31,7 @@ describe 'Administrador cadastra um horario' do
                   full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
                   email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
 
     fill_in 'Abertura Segunda Feira', with: '08:00'
@@ -62,7 +62,7 @@ describe 'Administrador cadastra um horario' do
                   full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
                   email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Abertura Segunda Feira', with: ''
     fill_in 'Cierre Segunda Feira', with: ''
@@ -99,7 +99,7 @@ describe 'Administrador cadastra um horario' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit new_restaurant_schedule_path
     expect(current_path).to eq(restaurant_path(restaurant.id))
   end

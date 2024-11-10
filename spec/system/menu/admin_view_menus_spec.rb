@@ -15,7 +15,7 @@ describe 'Administrador ve lista de cardapios' do
     Menu.create!(name: 'Café da manhã', restaurant: restaurant)
 
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
 
     expect(page).to have_content 'Almoço'
@@ -46,7 +46,7 @@ describe 'Administrador ve lista de cardapios' do
     Menu.create!(name: 'Café da manhã', restaurant: second_restaurant)
 
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit(root_path)
 
     expect(page).to have_content 'Almoço'

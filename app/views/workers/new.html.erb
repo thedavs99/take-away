@@ -1,9 +1,9 @@
-<section class="bg-slate-500" id="user">
+<section class="bg-slate-500" id="worker">
   <div class="max-w-screen-md mx-auto w-3/4 px-4 py-4">
       <h2 class="mb-4 text-4xl tracking-tight font-extrabold text-center text-gray-900 dark:text-white">Cadastrar Usuario</h2>
-      <% if @user.errors.any? %>
+      <% if @worker.errors.any? %>
         <ul>
-          <% @user.errors.full_messages.each do |message| %>
+          <% @worker.errors.full_messages.each do |message| %>
           <li><%= message %></li>
           <% end %>
         </ul>

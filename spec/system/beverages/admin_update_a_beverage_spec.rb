@@ -15,7 +15,7 @@ describe 'Administrador informa novo status de uma bebida' do
       Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                         restaurant: restaurant, status: :active)
   
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Minhas Bebidas'
       click_on 'Coca-Cola'
@@ -36,7 +36,7 @@ describe 'Administrador informa novo status de uma bebida' do
       Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                         restaurant: restaurant, status: :active)
   
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Minhas Bebidas'
       click_on 'Coca-Cola'
@@ -62,7 +62,7 @@ describe 'Administrador informa novo status de uma bebida' do
       Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, 
                         restaurant: restaurant, status: :inactive)
   
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Minhas Bebidas'
       click_on 'Coca-Cola'

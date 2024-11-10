@@ -12,7 +12,7 @@ describe 'Administrador adiciona uma nuova característica' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Adicionar Carateristica'
@@ -35,7 +35,7 @@ describe 'Administrador adiciona uma nuova característica' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Cadastrar'
@@ -63,7 +63,7 @@ describe 'Administrador adiciona uma nuova característica' do
     Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
                 calories: 174, restaurant: restaurant)    
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Risotto'

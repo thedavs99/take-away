@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'Usuario edita um pedido' do
+describe 'Usuario edita um prato' do
   it 'e não é o dono' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
@@ -26,7 +26,7 @@ describe 'Usuario edita um pedido' do
                   calories: 177, restaurant: second_restaurant)
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     patch(dish_path(second_dish.id), params: { dish: { name: 'Massa com carne' } })
 
     # Assert

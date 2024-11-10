@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   devise_for :admins
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
@@ -18,7 +19,7 @@ Rails.application.routes.draw do
     resources :tags, only: [:new, :create]
     resources :menus, only: [:new, :create, :show]
     resources :orders, only: [:index, :new, :create, :show]
-    resources :users, only: [ :index, :new, :create ]
+    resources :workers, only: [ :index, :new, :create ]
   end
 
   resources :restaurant_schedules, only: [ :new, :create, :show, :edit, :update ]

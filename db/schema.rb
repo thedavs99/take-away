@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_11_09_223516) do
+ActiveRecord::Schema[7.2].define(version: 2024_11_10_011533) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -52,8 +52,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_223516) do
     t.datetime "updated_at", null: false
     t.boolean "restaurant_owner"
     t.integer "admin_type", default: 2
+    t.integer "restaurant_id"
     t.index ["email"], name: "index_admins_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
+    t.index ["restaurant_id"], name: "index_admins_on_restaurant_id"
   end
 
   create_table "beverage_portions", force: :cascade do |t|
@@ -208,11 +210,11 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_223516) do
     t.string "full_address"
     t.string "telephone_number"
     t.string "email"
-    t.integer "admin_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "brand_name"
     t.string "code"
+    t.integer "admin_id", null: false
     t.index ["admin_id"], name: "index_restaurants_on_admin_id"
   end
 
@@ -234,17 +236,36 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_223516) do
   end
 
   create_table "users", force: :cascade do |t|
+    t.string "cpf"
+    t.integer "status", default: 0
+    t.integer "restaurant_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "email", default: "", null: false
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "name"
+    t.string "last_name"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["restaurant_id"], name: "index_users_on_restaurant_id"
+  end
+
+  create_table "workers", force: :cascade do |t|
     t.string "email"
     t.string "cpf"
     t.integer "status", default: 0
     t.integer "restaurant_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["restaurant_id"], name: "index_users_on_restaurant_id"
+    t.index ["restaurant_id"], name: "index_workers_on_restaurant_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "admins", "restaurants"
   add_foreign_key "beverage_portions", "beverages"
   add_foreign_key "beverage_previous_prices", "beverage_portions"
   add_foreign_key "beverages", "restaurants"
@@ -269,4 +290,5 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_09_223516) do
   add_foreign_key "taggings", "tags"
   add_foreign_key "tags", "restaurants"
   add_foreign_key "users", "restaurants"
+  add_foreign_key "workers", "restaurants"
 end

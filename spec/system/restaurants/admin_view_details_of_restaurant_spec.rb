@@ -7,7 +7,7 @@ describe 'Administrador vê seu restaurante' do
                         email: 'david@email.com', password: '123456789123')
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
 
     # Assert
@@ -28,7 +28,7 @@ describe 'Administrador vê seu restaurante' do
                         fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meu Restaurante'
 
@@ -56,7 +56,7 @@ describe 'Administrador vê seu restaurante' do
                         fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meu Restaurante'
 
@@ -79,7 +79,7 @@ describe 'Administrador vê seu restaurante' do
                         fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meu Restaurante'
 

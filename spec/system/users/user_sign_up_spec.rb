@@ -11,11 +11,10 @@ describe 'Usuario se cadastra' do
                     wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
-    user = User.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
-    Admin.create!(name: 'Luna', last_name: 'Martinez', cpf: '59868419050', 
-    email: 'luna@email.com', password: '123456789123')
+    Worker.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
+
     visit root_path
-    click_on 'Entrar'
+    click_on 'Usuario'
     click_on 'Crie sua conta!'
     fill_in 'Nome', with: 'Luna'
     fill_in 'Sobrenome', with: 'Garcia'

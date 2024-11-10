@@ -14,7 +14,7 @@ describe 'Administrador apaga um restaurante' do
     Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
     
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Coca-Cola'

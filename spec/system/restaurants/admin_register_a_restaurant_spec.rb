@@ -30,7 +30,7 @@ describe 'Administrador cadastra um restaurante' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
                   email: 'david@email.com', password: '123456789123')
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
 
     fill_in 'Razão Social', with: 'Mc Donalds Enterprise SP'
@@ -50,7 +50,7 @@ describe 'Administrador cadastra um restaurante' do
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
     email: 'david@email.com', password: '123456789123')
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Razão Social', with: ''
     fill_in 'Nome Fantasia', with: ''
@@ -81,7 +81,7 @@ describe 'Administrador cadastra um restaurante' do
                     fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit new_restaurant_path
 
     expect(restaurant.restaurant_schedule).to eq(restaurant_schedule)

@@ -14,7 +14,7 @@ describe 'Administrador busca bebidas e pratos' do
                             sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
 
     # Assert
@@ -52,7 +52,7 @@ describe 'Administrador busca bebidas e pratos' do
                             calories: 174, restaurant: restaurant)
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Opcções disponíveis', with: 'Risotto'
     click_on 'Buscar'
@@ -80,7 +80,7 @@ describe 'Administrador busca bebidas e pratos' do
     Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Opcções disponíveis', with: 'Coca-Cola'
     click_on 'Buscar'
@@ -107,7 +107,7 @@ describe 'Administrador busca bebidas e pratos' do
                             calories: 174, restaurant: restaurant)
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Opcções disponíveis', with: 'Risotto'
     click_on 'Buscar'
@@ -134,7 +134,7 @@ describe 'Administrador busca bebidas e pratos' do
                             calories: 174, restaurant: restaurant)
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Opcções disponíveis', with: 'Risotto'
     click_on 'Buscar'
@@ -164,7 +164,7 @@ describe 'Administrador busca bebidas e pratos' do
     Tagging.create(tag: tag, dish: dish)
 
     # Act
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     fill_in 'Opcções disponíveis', with: 'Com glutem'
     click_on 'Buscar'

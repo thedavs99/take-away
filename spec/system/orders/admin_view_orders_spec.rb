@@ -29,7 +29,7 @@ describe 'Administrador visualiza os pedidos' do
     Order.create!(name: 'Carlos', email: 'carlos@email.com', cpf: '12223111190', orderable_beverages: [orderable_beverage_b], orderable_dishes: [orderable_dish_b], restaurant: restaurant)
 
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pedidos'
 

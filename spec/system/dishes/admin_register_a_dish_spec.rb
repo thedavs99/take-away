@@ -13,7 +13,7 @@ describe 'Administrador cadastra um prato' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     tag = Tag.create!(description: 'Com glutem', restaurant: restaurant)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Cadastrar'
@@ -39,7 +39,7 @@ describe 'Administrador cadastra um prato' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     tag = Tag.create!(description: 'Com glutem', restaurant: restaurant)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Cadastrar'
@@ -65,7 +65,7 @@ describe 'Administrador cadastra um prato' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     tag = Tag.create!(description: 'Com glutem', restaurant: restaurant)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Cadastrar'
@@ -93,7 +93,7 @@ describe 'Administrador cadastra um prato' do
                     sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
     Tag.create!(description: 'Com glutem', restaurant: restaurant)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Cadastrar'

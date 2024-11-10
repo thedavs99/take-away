@@ -4,5 +4,10 @@ pt-BR:
       user: Usuario
     attributes:
       user:
+        login: "Entrár"
         cpf: 'CPF'
+        name: 'Nome'
+        last_name: 'Sobrenome'
         email: 'E-mail'
+        password: 'Senha'
+        password_confirmation: 'Confirme sua senha'

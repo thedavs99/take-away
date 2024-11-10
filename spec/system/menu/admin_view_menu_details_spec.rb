@@ -26,7 +26,7 @@ describe 'Administrador ve detalhes de um cardápio' do
     BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
     DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Almoço'
 
@@ -63,7 +63,7 @@ describe 'Administrador ve detalhes de um cardápio' do
     BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
     DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
 
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Almoço'
 
@@ -92,7 +92,7 @@ describe 'Administrador ve detalhes de um cardápio' do
                   sun_open: '08:00', sun_close: '18:00', restaurant: second_restaurant )
 
 
-    login_as(second_admin)
+    login_as(second_admin, scope: :admin)
     visit restaurant_menu_path(restaurant, menu)
   
     expect(current_path).to eq root_path

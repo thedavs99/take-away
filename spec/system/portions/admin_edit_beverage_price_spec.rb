@@ -15,7 +15,7 @@ describe 'Administrador edita preço de uma bebida' do
                         restaurant: restaurant, status: :inactive)
     BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
   
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Coca-Cola'
@@ -38,7 +38,7 @@ describe 'Administrador edita preço de uma bebida' do
                         restaurant: restaurant, status: :inactive)
     BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
   
-    login_as(admin)
+    login_as(admin, scope: :admin)
     visit root_path
     click_on 'Minhas Bebidas'
     click_on 'Coca-Cola'

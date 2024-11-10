@@ -1,19 +1,19 @@
-class UsersController < ApplicationController
+class WorkersController < ApplicationController
   before_action :set_restaurant_and_check_restaurant, only: [ :index, :new, :create ]
 
   def index
-    @users = @restaurant.users
+    @workers = @restaurant.workers
   end
   def new
-    @user = User.new
+    @worker = Worker.new
   end
 
   def create
-    @user = @restaurant.users.build(user_params)
-    if @user.save
-      redirect_to restaurant_users_path(@restaurant), notice: 'Usuario cadastrado com sucesso'
+    @worker = @restaurant.workers.build(worker_params)
+    if @worker.save
+      redirect_to restaurant_workers_path(@restaurant), notice: 'Trabalhador cadastrado com sucesso'
     else
-      flash.now[:alert] = 'Usuario não cadastrado'
+      flash.now[:alert] = 'Trabalhador não cadastrado'
       render 'new', status: :unprocessable_entity
     end
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def user_params
-    params.require(:user).permit(:email, :cpf)
+  def worker_params
+    params.require(:worker).permit(:email, :cpf)
   end
 end

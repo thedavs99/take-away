@@ -16,7 +16,7 @@ describe 'Administrador ve o primeiro preço no historico de preços' do
                           restaurant: restaurant, status: :inactive)
       BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
     
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Minhas Bebidas'
       click_on 'Coca-Cola'
@@ -44,7 +44,7 @@ describe 'Administrador ve o primeiro preço no historico de preços' do
       BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage)
       travel_to(Time.new(2008, 12, 24, 00, 04, 44))
 
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Minhas Bebidas'
       click_on 'Coca-Cola'
@@ -84,7 +84,7 @@ describe 'Administrador ve o primeiro preço no historico de preços' do
                                   fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                                   sun_open: '08:00', sun_close: '18:00', restaurant: second_restaurant )
     
-      login_as(second_admin)
+      login_as(second_admin, scope: :admin)
       visit beverage_beverage_portion_path(beverage, beverage_portion.id)
       
       expect(current_path).to eq root_path
@@ -106,7 +106,7 @@ describe 'Administrador ve o primeiro preço no historico de preços' do
                         calories: 174, restaurant: restaurant)
       DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish)
     
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Meus Pratos'
       click_on 'Risotto'
@@ -135,7 +135,7 @@ describe 'Administrador ve o primeiro preço no historico de preços' do
       first_date = Time.zone.today
       travel_to(Time.new(2008, 12, 24, 00, 04, 44))
 
-      login_as(admin)
+      login_as(admin, scope: :admin)
       visit root_path
       click_on 'Meus Pratos'
       click_on 'Risotto'
@@ -175,7 +175,7 @@ describe 'Administrador ve o primeiro preço no historico de preços' do
                                   fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                                   sun_open: '08:00', sun_close: '18:00', restaurant: second_restaurant )
     
-      login_as(second_admin)
+      login_as(second_admin, scope: :admin)
       visit dish_dish_portion_path(dish, dish_portion.id)
       
       expect(current_path).to eq root_path

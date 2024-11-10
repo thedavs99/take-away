@@ -1,11 +1,13 @@
 class User < ApplicationRecord
-  EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable
+
   belongs_to :restaurant
-  validates :email, :cpf, presence: true
-  validates :email, format: {with: EMAIL_REGEX}
   validate :cpf_is_valid?
 
-  enum status: { inactive: 0, active: 2 }
+  before_validation :set_worker
 
   private
   
@@ -13,5 +15,15 @@ class User < ApplicationRecord
     unless CPF.valid?(self.cpf)
       errors.add(:cpf, 'não é válido')
     end
+  end
+
+  def set_worker
+    worker = Worker.find_by(email: self.email, cpf: self.cpf)
+    if worker
+      worker.active!
+      self.restaurant = worker.restaurant
+    else
+      errors.add(:user, 'não pre-cadastrado')
+    end    
   end
 end

@@ -1,0 +1,8 @@
+pt-BR:
+  activerecord:
+    models:
+      worker: Trabalhador
+    attributes:
+      worker:
+        cpf: 'CPF'
+        email: 'E-mail'
