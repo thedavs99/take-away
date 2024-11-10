@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :authenticate_admin_or_user
   before_action :register_a_restaurant
   before_action :set_and_check_restaurant, only: [:index ,:new, :create, :show]
   
@@ -43,9 +43,13 @@ class OrdersController < ApplicationController
     params.require(:order).permit(:name, :telephone_number, :email, :cpf)
   end
 
+  def authenticate_admin_or_user
+    redirect_to root_path unless current_admin || current_user
+  end
+
   def set_and_check_restaurant
     @restaurant = Restaurant.find(params[:restaurant_id])
-    if @restaurant != current_admin.restaurant
+    if (current_admin && @restaurant != current_admin.restaurant) || (current_user && @restaurant != current_user.restaurant)
       redirect_to root_path, alert: "Você não possui acesso a este cardápio"
     end
   end

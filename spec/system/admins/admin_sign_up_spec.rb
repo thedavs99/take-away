@@ -5,7 +5,7 @@ describe 'Administrador se cadastra' do
     # Arrange
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Administrador'
     click_on 'Crie sua conta!'
     fill_in 'Nome', with: 'David'
     fill_in 'Sobrenome', with: 'Martinez'
@@ -27,7 +27,7 @@ describe 'Administrador se cadastra' do
     # Arrange
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Administrador'
     click_on 'Crie sua conta!'
     fill_in 'Nome', with: 'David'
     fill_in 'Sobrenome', with: 'Martinez'

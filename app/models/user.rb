@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   belongs_to :restaurant
   validate :cpf_is_valid?
-
+  validate :email_cpf_uniqueness
   before_validation :set_worker
 
   private
@@ -23,7 +23,13 @@ class User < ApplicationRecord
       worker.active!
       self.restaurant = worker.restaurant
     else
-      errors.add(:user, 'não pre-cadastrado')
+      errors.add(:email, 'não pre-cadastrado')
+      errors.add(:cpf, 'não pre-cadastrado')
     end    
+  end
+
+  def email_cpf_uniqueness
+    errors.add(:cpf, 'ja cadastrado') if User.find_by(cpf: self.cpf) || Admin.find_by(cpf: self.cpf)
+    errors.add(:email, 'ja cadastrado') if User.find_by(email: self.email) || Admin.find_by(email: self.email)
   end
 end

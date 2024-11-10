@@ -7,7 +7,7 @@ describe 'Administrador se auntentica' do
                   email: 'david@email.com', password: '123456789123')
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Administrador'
 
     within 'form' do
       fill_in 'E-mail', with: 'david@email.com'
@@ -18,7 +18,7 @@ describe 'Administrador se auntentica' do
     # Assert
     within('nav') do
       expect(page).to have_button 'Sair'
-      expect(page).not_to have_link 'Entrar'
+      expect(page).not_to have_link 'Administrador'
       expect(page).to have_content 'David Martinez - david@email.com'
     end
     expect(page).to have_content 'Login efetuado com sucesso.'
@@ -31,7 +31,7 @@ describe 'Administrador se auntentica' do
     
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Administrador'
     within 'form' do
       fill_in 'E-mail', with: 'david@email.com'
       fill_in 'Senha', with: '123456789123'
@@ -41,7 +41,7 @@ describe 'Administrador se auntentica' do
 
     # Assert
     expect(page).not_to have_button 'Sair'
-    expect(page).to have_link 'Entrar'
+    expect(page).to have_link 'Administrador'
     expect(page).not_to have_content 'David Martinez - david@email.com'
     expect(page).not_to have_content 'Login efetuado com sucesso.'    
   end

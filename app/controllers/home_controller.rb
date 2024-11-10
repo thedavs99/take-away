@@ -5,5 +5,9 @@ class HomeController < ApplicationController
       @restaurant = current_admin.restaurant
       @menus = @restaurant.menus
     end
+    if current_user
+      @restaurant = current_user.restaurant
+      @menus = @restaurant.menus
+    end
   end
 end

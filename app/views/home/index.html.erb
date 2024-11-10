@@ -1,4 +1,4 @@
-<% if current_admin %> 
+<% if current_admin || current_user %> 
   <%= link_to 'Cadastrar cardápio', new_restaurant_menu_path(@restaurant.id) %>
 
   <% @menus.each do |menu| %>

@@ -7,7 +7,7 @@ describe 'Administrador cadastra um restaurante' do
     email: 'david@email.com', password: '123456789123')
     # Act
     visit root_path
-    click_on 'Entrar'
+    click_on 'Administrador'
 
     within 'form' do
       fill_in 'E-mail', with: 'david@email.com'

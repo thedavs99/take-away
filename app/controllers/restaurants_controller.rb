@@ -1,8 +1,10 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_admin!
-  before_action :register_a_restaurant, only: [:show]
-  before_action :check_user_own_a_restaurant, only: [:new, :create]
-  before_action :set_restaurant_and_check_restaurant, only: [:show, :edit, :update]
+  before_action :authenticate_admin!, only: [ :edit, :update ]
+  before_action :authenticate_admin_or_user, only: [ :show ]
+  before_action :register_a_restaurant, only: [ :show ]
+  before_action :check_user_own_a_restaurant, only: [ :new, :create ]
+  before_action :set_and_check_restaurant, only: [ :show ]
+  before_action :set_and_check_restaurant_for_admin, only: [ :edit, :update ]
   def new
     @restaurant = Restaurant.new
   end
@@ -65,7 +67,18 @@ class RestaurantsController < ApplicationController
     end
   end
 
-  def set_restaurant_and_check_restaurant
+  def authenticate_admin_or_user
+    redirect_to root_path unless current_admin || current_user
+  end
+
+  def set_and_check_restaurant
+    @restaurant = Restaurant.find(params[:id])
+    if (current_admin && @restaurant != current_admin.restaurant) || (current_user && @restaurant != current_user.restaurant)
+      redirect_to root_path, alert: "Você não possui acesso a este cardápio"
+    end
+  end
+
+  def set_and_check_restaurant_for_admin
     @restaurant = Restaurant.find(params[:id])
     if @restaurant != current_admin.restaurant
       redirect_to restaurant_path(current_admin.restaurant), alert: "Você não possui acesso a este restaurante"

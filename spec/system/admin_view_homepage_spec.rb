@@ -19,6 +19,6 @@ describe 'Administrador visita tela inicial' do
     visit(root_path)
 
     # Assert
-    expect(page).to have_content('Entrar')
+    expect(page).to have_content('Administrador')
   end
 end
