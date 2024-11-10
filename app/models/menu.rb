@@ -10,6 +10,6 @@ class Menu < ApplicationRecord
   private
 
   def name_unique?
-    errors.add(:name, 'Nome já está em uso') if self.restaurant.menus.exists?(name: name)
+    errors.add(:name, 'já está em uso') if self.restaurant.menus.exists?(name: self.name) && self.id != Menu.find(self.id).id
   end    
 end

@@ -1,7 +1,8 @@
 class MenusController < ApplicationController
-  before_action :authenticate_admin_or_user
+  before_action :authenticate_admin!, only: [ :new, :create, :edit, :update ]
+  before_action :authenticate_admin_or_user, only: [ :show ]
   before_action :register_a_restaurant
-  before_action :set_and_check_restaurant, only: [:new, :create, :show]
+  before_action :set_and_check_restaurant, only: [ :new, :create, :show, :edit, :update ]
   def new
     @menu = Menu.new
   end 
@@ -20,8 +21,19 @@ class MenusController < ApplicationController
     @menu = Menu.find(params[:id])
   end
 
+  def edit
+    @menu = Menu.find(params[:id])
+  end
 
-
+  def update
+    @menu = Menu.find(params[:id])
+    if @menu.update(menu_params)
+      redirect_to root_path, notice: 'Cardápio de Restaurante atualizado'  
+    else
+      flash.now[:alert] = 'Não foi possivel atualizar o cadastro'
+      render 'new', status: :unprocessable_entity
+    end   
+  end
 
   private
   def menu_params

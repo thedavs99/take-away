@@ -34,7 +34,7 @@ class RestaurantsController < ApplicationController
       @status = 'Aberto' 
     elsif DateTime.now.wday == 6 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sat_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sat_open.strftime("%H:%M")
       @status = 'Aberto' 
-    elsif DateTime.now.wday == 7 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sun_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sun_open.strftime("%H:%M")
+    elsif DateTime.now.wday == 0 && DateTime.now.strftime("%H:%M") < @restaurant.restaurant_schedule.sun_close.strftime("%H:%M") && DateTime.now.strftime("%H:%M") > @restaurant.restaurant_schedule.sun_open.strftime("%H:%M")
       @status = 'Aberto' 
     else
       @status = 'Fechado'
