@@ -1,4 +1,5 @@
 class WorkersController < ApplicationController
+  before_action :auth_admin
   before_action :set_restaurant_and_check_restaurant, only: [ :index, :new, :create ]
 
   def index

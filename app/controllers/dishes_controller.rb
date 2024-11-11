@@ -1,5 +1,5 @@
 class DishesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :auth_admin
   before_action :register_a_restaurant
   before_action :set_dish_and_check_restaurant, only: [:show, :edit, :update, :destroy, :inactive, :active]
   def index

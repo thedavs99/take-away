@@ -1,5 +1,5 @@
 class RestaurantSchedulesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :auth_admin
   before_action :register_a_restaurant, only: [:show]
   before_action :check_user_restaurant_have_an_schedule, only: [:new, :create]
   before_action :set_restaurant_schedule_and_check_restaurant, only: [ :show, :edit, :update ]

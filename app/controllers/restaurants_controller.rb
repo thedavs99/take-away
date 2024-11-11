@@ -1,5 +1,5 @@
 class RestaurantsController < ApplicationController
-  before_action :authenticate_admin!, only: [ :edit, :update ]
+  before_action :auth_admin, only: [ :edit, :update ]
   before_action :authenticate_admin_or_user, only: [ :show ]
   before_action :register_a_restaurant, only: [ :show ]
   before_action :check_user_own_a_restaurant, only: [ :new, :create ]

@@ -24,4 +24,11 @@ class ApplicationController < ActionController::Base
       redirect_to new_restaurant_schedule_path if current_admin.restaurant.restaurant_schedule.nil?
     end      
   end
+
+  def auth_admin
+    unless admin_signed_in?
+      return redirect_to root_path if user_signed_in?
+      redirect_to new_admin_session_path 
+    end
+  end
 end

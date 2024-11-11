@@ -1,5 +1,5 @@
 class BeveragePreviousPricesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :auth_admin
   before_action :register_a_restaurant
   def create
     @beverage = Beverage.find(params[:beverage_id])

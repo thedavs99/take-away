@@ -1,5 +1,5 @@
 class MenusController < ApplicationController
-  before_action :authenticate_admin!, only: [ :new, :create, :edit, :update ]
+  before_action :auth_admin, only: [ :new, :create, :edit, :update ]
   before_action :authenticate_admin_or_user, only: [ :show ]
   before_action :register_a_restaurant
   before_action :set_and_check_restaurant, only: [ :new, :create, :show, :edit, :update ]

@@ -4,7 +4,7 @@ describe 'Administrador ve todos os pratos do seu restaurante' do
   it 'e deve estar autenticado' do
     visit dish_path(1)
 
-    expect(current_path).to have_content new_admin_session_path
+    expect(current_path).to eq new_admin_session_path
   end
 
   it 'e deve poseer um restaurante' do
@@ -14,7 +14,7 @@ describe 'Administrador ve todos os pratos do seu restaurante' do
     login_as(admin, scope: :admin)
     visit dish_path(1)
 
-    expect(current_path).to have_content new_restaurant_path
+    expect(current_path).to eq new_restaurant_path
   end
 
   it 'e deve ter registrado o horario do restaurante' do
@@ -27,7 +27,24 @@ describe 'Administrador ve todos os pratos do seu restaurante' do
     login_as(admin, scope: :admin)
     visit dish_path(1)
                 
-    expect(current_path).to have_content new_restaurant_schedule_path    
+    expect(current_path).to eq new_restaurant_schedule_path    
+  end
+
+  it 'e deve estar autenticado como admin' do
+    admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
+                  email: 'david@email.com', password: '123456789123')
+    restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
+                    full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
+                    email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+    Worker.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
+    user = User.create!(name: 'Luna', last_name: 'Garcia', cpf: '59868419050', 
+                  email: 'luna@email.com', password: '123456789123')
+    
+
+    login_as(user, scope: :user)
+    visit dish_path(1)
+                
+    expect(current_path).to eq root_path    
   end
 
   it 'com sucesso'  do

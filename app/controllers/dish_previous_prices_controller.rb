@@ -1,5 +1,5 @@
 class DishPreviousPricesController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :auth_admin
   before_action :register_a_restaurant
   def create
     @dish = Dish.find(params[:dish_id])

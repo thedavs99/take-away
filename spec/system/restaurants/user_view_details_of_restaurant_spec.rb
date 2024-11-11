@@ -1,21 +1,6 @@
 require 'rails_helper'
 
-describe 'Administrador vê seu restaurante' do
-  it 'é não ve acceso a seu restaurante' do
-    # Arrange
-    admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
-                        email: 'david@email.com', password: '123456789123')
-
-    # Act
-    login_as(admin, scope: :admin)
-    visit root_path
-
-    # Assert
-    within 'nav' do
-      expect(page).not_to have_link 'Meu Restaurante'
-    end
-  end
-
+describe 'Usuario vê seu restaurante' do
   it 'com sucesso' do
     # Arrange
     admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
@@ -27,8 +12,11 @@ describe 'Administrador vê seu restaurante' do
                         wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                         fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
+    Worker.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
+    user = User.create!(name: 'Luna', last_name: 'Garcia', cpf: '59868419050', 
+                  email: 'luna@email.com', password: '123456789123')
     # Act
-    login_as(admin, scope: :admin)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Meu Restaurante'
 
@@ -56,8 +44,11 @@ describe 'Administrador vê seu restaurante' do
                         wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                         fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
+    Worker.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
+    user = User.create!(name: 'Luna', last_name: 'Garcia', cpf: '59868419050', 
+                  email: 'luna@email.com', password: '123456789123')
     # Act
-    login_as(admin, scope: :admin)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Meu Restaurante'
 
@@ -79,13 +70,15 @@ describe 'Administrador vê seu restaurante' do
                         wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
                         fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
                         sun_open: '08:00', sun_close: '18:00', restaurant: restaurant )
+    Worker.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
+    user = User.create!(name: 'Luna', last_name: 'Garcia', cpf: '59868419050', 
+                  email: 'luna@email.com', password: '123456789123')
     # Act
-    login_as(admin, scope: :admin)
+    login_as(user, scope: :user)
     visit root_path
     click_on 'Meu Restaurante'
 
     # Assert
     expect(page).to have_content("Fechado")
   end
-
 end

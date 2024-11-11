@@ -1,5 +1,5 @@
 class TagsController < ApplicationController
-  before_action :authenticate_admin!
+  before_action :auth_admin
   before_action :register_a_restaurant
   before_action :set_tag_and_check_restaurant, only: [ :new, :create ]
 
