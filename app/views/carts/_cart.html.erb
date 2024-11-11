@@ -1,9 +1,9 @@
-<h1> Cart </h1>
+<h1> Carinho </h1>
 <div id="cart">
   <% if @cart.orderable_dishes.count > 0 || @cart.orderable_beverages.count > 0 %>
     <%= render 'carts/orderables' %>
     <p> Total: <%= @cart.total%> </p> <br/> <%= link_to 'Enviar Pedido', new_restaurant_order_path(@restaurant), class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full'%>      
   <% else %>
-    <p>Your car is empty</p>
+    <p>Carinho vazio</p>
   <% end %>
 </div>

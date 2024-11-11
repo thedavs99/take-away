@@ -23,3 +23,10 @@ Things you may want to cover:
 
 * ...
 # task-new
+Para ingresar como admin:
+email: 'juan@email.com'
+password: '123456789123'
+
+Para ingresar como usuario:
+email: 'luna@email.com'
+password: '123456789123'
