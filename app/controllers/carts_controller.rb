@@ -34,7 +34,7 @@ class CartsController < ApplicationController
     quantity = params[:quantity].to_i
     current_orderable_beverage = @cart.orderable_beverages.find_by(beverage_portion_id: @beverage_portion.id)
     if current_orderable_beverage && quantity > 0
-      if current_orderable_dish.update(quantity: quantity)
+      if current_orderable_beverage.update(quantity: quantity)
         redirect_back_or_to root_path, notice: 'Pedido adicionado ao carinho'
       else
         redirect_back_or_to root_path, notice: 'Quantidade deve ser maior a 0'
