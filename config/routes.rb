@@ -33,7 +33,7 @@ Rails.application.routes.draw do
   end
 
   resources :beverages, only: [ :index, :new, :create, :show, :edit, :update, :destroy ] do
-    post 'inactive', on: :member 
+    post 'inactive', on: :member
     post 'active', on: :member
     resources :beverage_portions, only: [ :new, :create, :show ] do 
       resources :beverage_previous_prices, only: [ :create ]
@@ -45,5 +45,13 @@ Rails.application.routes.draw do
     post 'remove_dish', on: :member
     post 'add_beverage', on: :member
     post 'remove_beverage', on: :member
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :restaurants, param: :code, only: [ :show ] do
+        resources :orders, only: [ :index ]
+      end
+    end
   end
 end
