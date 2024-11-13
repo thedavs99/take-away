@@ -10,5 +10,11 @@ pt-BR:
         email: 'E-mail'
         telephone_number: 'Telefone'
         status: 'Status'
+        statuses: 
+          awaiting_kitchen_confirmation: "Aguardando confirmação da cozinha"
+          in_preparation: "Em preparação"
+          canceled: "Cancelado"
+          ready: "Pronto"
+          delivered: "Entregue"
 
 
