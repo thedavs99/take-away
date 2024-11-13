@@ -10,6 +10,8 @@ pt-BR:
         email: 'E-mail'
         telephone_number: 'Telefone'
         status: 'Status'
+        code: 'Codigo'
+        created_at: 'Data de entrada'        
         statuses: 
           awaiting_kitchen_confirmation: "Aguardando confirmação da cozinha"
           in_preparation: "Em preparação"

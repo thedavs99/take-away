@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      orderable_dish: 'Pratos Ordenados'
+    attributes:
+      orderable_dish:
+        quantity: 'Quantidade'

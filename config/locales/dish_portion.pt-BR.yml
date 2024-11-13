@@ -1,7 +1,7 @@
 pt-BR:
   activerecord:
     models:
-      dish_portion: Porção de bebida
+      dish_portion: Porção
     attributes:
       dish_portion:
         description: 'Descrição'

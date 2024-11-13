@@ -50,7 +50,8 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :restaurants, param: :code, only: [ ] do
-        resources :orders, only: [ :index, :show ]
+        resources :orders, param: :code, only: [ :index, :show ] do
+        end
       end
     end
   end

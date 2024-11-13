@@ -1,0 +1,7 @@
+pt-BR:
+  activerecord:
+    models:
+      orderable_beverage: 'Bebidas Ordenadas'
+    attributes:
+      orderable_beverage:
+        quantity: 'Quantidade'
