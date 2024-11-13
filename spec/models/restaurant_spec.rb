@@ -93,6 +93,25 @@ RSpec.describe Restaurant, type: :model do
         
         expect(second_restaurant.code).not_to eq first_restaurant.code
       end
+
+      it 'é um codigo não pode ser igual' do
+        first_admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
+                              email: 'david@email.com', password: '123456789123')
+        allow(SecureRandom).to receive(:alphanumeric).and_return('ABC23456')
+        Restaurant.create!(corporate_name: "McDonald's São Paulo", brand_name: "McDonald's", cnpj: 26219781000101, 
+                                        full_address: 'Rua Henrique Schaumann, 80/124 - Cerqueira César, São Paulo - SP, 05413-010', 
+                                        email: 'contato@mcdonaldsp.com' ,telephone_number: 11999695710, admin: first_admin)
+        second_admin = Admin.create!(name: 'Carlos', last_name: 'Martinez', cpf: '79404816060', 
+                                        email: 'carlos@email.com', password: '123456789123')
+        allow(SecureRandom).to receive(:alphanumeric).and_return('ABC23456')
+        second_restaurant = Restaurant.new(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 28176493000134, 
+                                      full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
+                                      email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: second_admin)
+
+        second_restaurant.valid?
+        
+        expect(second_restaurant.errors.include?(:code)).to be true
+      end
     end
 
     it 'Usuário cadastra segundo restaurante' do

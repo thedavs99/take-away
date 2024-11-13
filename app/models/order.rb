@@ -1,5 +1,6 @@
 class Order < ApplicationRecord
   EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+  before_validation :generate_code, on: :create
   has_many :orderable_dishes
   has_many :dish_portions, through: :orderable_dishes
   has_many :orderable_beverages
@@ -8,11 +9,12 @@ class Order < ApplicationRecord
   validate :email_or_telefone_validate?
   validate :cpf_is_valid?
   validates :name, :code, :status, presence: true
+  validates :code, uniqueness: true
 
 
   enum status: { awaiting_kitchen_confirmation: 0, in_preparation: 2, canceled: 4, ready: 6, delivered: 8 }
 
-  before_validation :generate_code, on: :create
+
 
   def total
     self.orderable_dishes.to_a.sum { |orderable_dish| orderable_dish.total} + self.orderable_beverages.to_a.sum { |orderable_beverage| orderable_beverage.total}

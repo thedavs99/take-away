@@ -11,7 +11,7 @@ class Restaurant < ApplicationRecord
 
   before_validation :generate_code, on: :create
   
-  validates :cnpj, :admin, :email, uniqueness: true
+  validates :code, :cnpj, :admin, :email, uniqueness: true
   validates :brand_name, :corporate_name, :email, :cnpj, :telephone_number, :full_address, presence: true
   validates :email, format: {with: EMAIL_REGEX}
   validates :telephone_number, length: { minimum: 10, maximum: 11 }
