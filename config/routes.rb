@@ -51,6 +51,8 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :restaurants, param: :code, only: [ ] do
         resources :orders, param: :code, only: [ :index, :show ] do
+          post 'in_preparation', on: :member
+          post 'ready', on: :member
         end
       end
     end

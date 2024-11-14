@@ -39,6 +39,32 @@ class Api::V1::OrdersController < Api::V1::ApiController
     end
   end
 
+  def in_preparation
+    order = @restaurant.orders.find_by(code: params[:code])
+    if order
+      return render json: { error: 'Só é possivel aplicar a pedidos Aguardando confirmação da cozinha' }, status: 422 unless order.awaiting_kitchen_confirmation?
+      order.in_preparation!
+      order.save
+      order_json = set_json_with_I18n(order)
+      render status: 200, json: order_json
+    else
+      render json: { error: 'Pedido não encontrado' }, status: 404
+    end   
+  end
+
+  def ready
+    order = @restaurant.orders.find_by(code: params[:code])
+    if order
+      return render json: { error: 'Só é possivel aplicar a pedidos em preparação' }, status: 422 unless order.awaiting_kitchen_confirmation?
+      order.ready!
+      order.save
+      order_json = set_json_with_I18n(order)
+      render status: 200, json: order_json
+    else
+      render json: { error: 'Pedido não encontrado' }, status: 404
+    end   
+  end
+
   private 
 
   def set_restaurant 
