@@ -46,10 +46,19 @@ orderable_beverage = OrderableBeverage.create!(quantity: 1, beverage_portion: be
 orderable_dish = OrderableDish.create!(quantity: 1, dish_portion: dish_portion)
 orderable_beverage_b = OrderableBeverage.create!(quantity: 2, beverage_portion: beverage_portion)
 orderable_dish_b = OrderableDish.create!(quantity: 2, dish_portion: dish_portion)
+orderable_beverage_c = OrderableBeverage.create!(quantity: 1, beverage_portion: beverage_portion)
+orderable_dish_c = OrderableDish.create!(quantity: 1, dish_portion: dish_portion)
+orderable_beverage_d = OrderableBeverage.create!(quantity: 2, beverage_portion: beverage_portion)
+orderable_dish_d = OrderableDish.create!(quantity: 2, dish_portion: dish_portion)
 
-Order.create!(name: 'Julia', email: 'julia@email.com', cpf: '50514139005', orderable_beverages: [orderable_beverage], orderable_dishes: [orderable_dish], restaurant: restaurant)
+Order.create!(name: 'Julia', email: 'julia@email.com', cpf: '50514139005', orderable_beverages: [orderable_beverage_c], orderable_dishes: [orderable_dish_c], restaurant: restaurant)
 
-Order.create!(name: 'Carlos', email: 'carlos@email.com', cpf: '87067249066', orderable_beverages: [orderable_beverage_b], orderable_dishes: [orderable_dish_b], restaurant: restaurant)
+Order.create!(name: 'Carlos', email: 'carlos@email.com', cpf: '87067249066', orderable_beverages: [orderable_beverage_d], orderable_dishes: [orderable_dish_d], restaurant: restaurant)
+
+Order.create!(name: 'Daniel', email: 'daniel@email.com', cpf: '37842669082', orderable_beverages: [orderable_beverage], orderable_dishes: [orderable_dish], restaurant: restaurant, status: :in_preparation)
+
+Order.create!(name: 'Miguel', email: 'miguel@email.com', cpf: '83093878063', orderable_beverages: [orderable_beverage_b], orderable_dishes: [orderable_dish_b], restaurant: restaurant, status: :ready)
+
 Worker.create!(email: 'luna@email.com', cpf: '59868419050', restaurant: restaurant)
 Worker.create!(email: 'carola@email.com', cpf: '83521649024', restaurant: restaurant)
 User.create!(name: 'Luna', last_name: 'Garcia', cpf: '59868419050', 

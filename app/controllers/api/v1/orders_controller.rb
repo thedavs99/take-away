@@ -55,7 +55,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
   def ready
     order = @restaurant.orders.find_by(code: params[:code])
     if order
-      return render json: { error: 'Só é possivel aplicar a pedidos em preparação' }, status: 422 unless order.awaiting_kitchen_confirmation?
+      return render json: { error: 'Só é possivel aplicar a pedidos em preparação' }, status: 422 unless order.in_preparation?
       order.ready!
       order.save
       order_json = set_json_with_I18n(order)
@@ -76,21 +76,21 @@ class Api::V1::OrdersController < Api::V1::ApiController
 
   def set_json_with_I18n(order)
     { 
-      "#{Order.human_attribute_name("code")}": order.code,
-      "#{Order.human_attribute_name("name")}": order.name,
-      "#{Order.human_attribute_name("email")}": order.email,
-      "#{Order.human_attribute_name("cpf")}": order.cpf, 
-      "#{Order.human_attribute_name("created_at")}": order.created_at.strftime("%d/%m/%Y"), 
-      "#{Order.human_attribute_name("status")}": Order.human_enum_name(:status, order.status),
-      Itens: set_items(order.orderable_dishes, order.orderable_beverages),
-      "#{Order.human_attribute_name("total")}": order.total
+      code: order.code,
+      name: order.name,
+      email: order.email,
+      cpf: order.cpf, 
+      created_at: order.created_at.strftime("%d/%m/%Y"), 
+      status: Order.human_enum_name(:status, order.status),
+      items: set_items(order.orderable_dishes, order.orderable_beverages),
+      total: order.total
     }
   end
 
   def set_items(orderable_dishes, orderable_beverages)
     {
-      "#{OrderableDish.model_name.human}": set_dishes(orderable_dishes),
-      "#{OrderableBeverage.model_name.human}": set_beverages(orderable_beverages)
+      dishes: set_dishes(orderable_dishes),
+      beverages: set_beverages(orderable_beverages)
     }
   end
 
@@ -100,10 +100,10 @@ class Api::V1::OrdersController < Api::V1::ApiController
     orderable_dishes.each do |orderable_dish|
       dish_portion = orderable_dish.dish_portion
       json_dishes << {
-                      "#{Dish.human_attribute_name("name")}": dish_portion.dish.name,
-                      "#{DishPortion.model_name.human}": dish_portion.description,
-                      "#{DishPortion.human_attribute_name("price")}": dish_portion.price,
-                      "#{OrderableDish.human_attribute_name("quantity")}": orderable_dish.quantity
+                      name: dish_portion.dish.name,
+                      portion: dish_portion.description,
+                      price: dish_portion.price,
+                      quantity: orderable_dish.quantity
                      }
       end
       return json_dishes
@@ -114,10 +114,10 @@ class Api::V1::OrdersController < Api::V1::ApiController
     orderable_beverages.each do |orderable_beverage|
       beverage_portion = orderable_beverage.beverage_portion
       json_beverages << {
-                      "#{Beverage.human_attribute_name("name")}": beverage_portion.beverage.name,
-                      "#{BeveragePortion.model_name.human}": beverage_portion.description,
-                      "#{BeveragePortion.human_attribute_name("price")}": beverage_portion.price,
-                      "#{OrderableBeverage.human_attribute_name("quantity")}": orderable_beverage.quantity
+                      name: beverage_portion.beverage.name,
+                      portion: beverage_portion.description,
+                      price: beverage_portion.price,
+                      quantity: orderable_beverage.quantity
                      }
       end
       return json_beverages

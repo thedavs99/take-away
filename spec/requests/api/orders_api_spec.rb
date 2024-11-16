@@ -438,25 +438,25 @@ describe 'Orders API' do
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
-      expect(json_response["Codigo"]).to eq 'ABC12345'
-      expect(json_response["Status"]).to eq 'Aguardando confirmação da cozinha'
-      expect(json_response["Nome"]).to eq 'Julia'
-      expect(json_response["E-mail"]).to eq 'julia@email.com'
-      expect(json_response["CPF"]).to eq '12223111190'
-      expect(json_response["Data de entrada"]).to eq I18n.l(Date.today)
-      expect(json_response["Itens"]["Pratos Ordenados"][0]["Nome"]).to eq 'Ragú'
-      expect(json_response["Itens"]["Pratos Ordenados"][0]["Porção"]).to eq 'Uma pessoa'
-      expect(json_response["Itens"]["Pratos Ordenados"][0]["Preço"]).to eq 125
-      expect(json_response["Itens"]["Pratos Ordenados"][0]["Quantidade"]).to eq 1
-      expect(json_response["Itens"]["Bebidas Ordenadas"][0]["Nome"]).to eq 'Coca-Cola'
-      expect(json_response["Itens"]["Bebidas Ordenadas"][0]["Porção"]).to eq 'Lata'
-      expect(json_response["Itens"]["Bebidas Ordenadas"][0]["Preço"]).to eq 20
-      expect(json_response["Itens"]["Bebidas Ordenadas"][0]["Quantidade"]).to eq 2
-      expect(json_response["Itens"]["Pratos Ordenados"][1]["Nome"]).to eq 'Ragú'
-      expect(json_response["Itens"]["Pratos Ordenados"][1]["Porção"]).to eq 'Tres pessoas'
-      expect(json_response["Itens"]["Pratos Ordenados"][1]["Preço"]).to eq 455
-      expect(json_response["Itens"]["Pratos Ordenados"][1]["Quantidade"]).to eq 1
-      expect(json_response["Total"]).to eq 620
+      expect(json_response["code"]).to eq 'ABC12345'
+      expect(json_response["status"]).to eq 'Aguardando confirmação da cozinha'
+      expect(json_response["name"]).to eq 'Julia'
+      expect(json_response["email"]).to eq 'julia@email.com'
+      expect(json_response["cpf"]).to eq '12223111190'
+      expect(json_response["created_at"]).to eq I18n.l(Date.today)
+      expect(json_response["items"]["dishes"][0]["name"]).to eq 'Ragú'
+      expect(json_response["items"]["dishes"][0]["portion"]).to eq 'Uma pessoa'
+      expect(json_response["items"]["dishes"][0]["price"]).to eq 125
+      expect(json_response["items"]["dishes"][0]["quantity"]).to eq 1
+      expect(json_response["items"]["beverages"][0]["name"]).to eq 'Coca-Cola'
+      expect(json_response["items"]["beverages"][0]["portion"]).to eq 'Lata'
+      expect(json_response["items"]["beverages"][0]["price"]).to eq 20
+      expect(json_response["items"]["beverages"][0]["quantity"]).to eq 2
+      expect(json_response["items"]["dishes"][1]["name"]).to eq 'Ragú'
+      expect(json_response["items"]["dishes"][1]["portion"]).to eq 'Tres pessoas'
+      expect(json_response["items"]["dishes"][1]["price"]).to eq 455
+      expect(json_response["items"]["dishes"][1]["quantity"]).to eq 1
+      expect(json_response["total"]).to eq 620
     end
 
     it 'fail if restaurant not found' do
@@ -507,7 +507,7 @@ describe 'Orders API' do
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
-      expect(json_response["Status"]).to eq 'Em preparação'
+      expect(json_response["status"]).to eq 'Em preparação'
     end
 
     it 'fail when order not found' do
@@ -588,14 +588,14 @@ describe 'Orders API' do
       orderable_dishes << OrderableDish.create!(quantity: 1, dish_portion: dish_portion)
       orderable_dishes << OrderableDish.create!(quantity: 1, dish_portion: dish_portion_b)
       allow(SecureRandom).to receive(:alphanumeric).and_return('ABC12345')
-      Order.create!(name: 'Julia', email: 'julia@email.com', cpf: '12223111190', orderable_beverages: [orderable_beverage], orderable_dishes: orderable_dishes, restaurant: restaurant)
+      Order.create!(name: 'Julia', email: 'julia@email.com', cpf: '12223111190', orderable_beverages: [orderable_beverage], orderable_dishes: orderable_dishes, restaurant: restaurant, status: :in_preparation)
 
       post '/api/v1/restaurants/ABC123/orders/ABC12345/ready'
 
       expect(response.status).to eq 200
       expect(response.content_type).to include 'application/json'
       json_response = JSON.parse(response.body)
-      expect(json_response["Status"]).to eq 'Pronto'
+      expect(json_response["status"]).to eq 'Pronto'
     end
 
     it 'fail when order not found' do

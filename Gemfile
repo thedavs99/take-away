@@ -37,7 +37,7 @@ gem "cpf_cnpj"
 
 gem "image_processing", ">= 1.2"
 
-
+gem 'rack-cors'
 
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
