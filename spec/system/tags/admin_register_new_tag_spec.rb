@@ -16,8 +16,8 @@ describe 'Administrador adiciona uma nuova característica' do
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Adicionar Carateristica'
-    fill_in 'Descrição', with: 'Com glutem' 
-    click_on 'Enviar'
+    fill_in 'Adicionar Carateristica', with: 'Com glutem' 
+    click_on 'Adicionar'
     click_on 'Meus Pratos'
     click_on 'Cadastrar'
 
@@ -39,10 +39,9 @@ describe 'Administrador adiciona uma nuova característica' do
     visit root_path
     click_on 'Meus Pratos'
     click_on 'Cadastrar'
-    within '#tag' do
-      fill_in 'Descrição', with: 'Com glutem' 
-      click_on 'Enviar'
-    end
+    fill_in 'Adicionar Carateristica', with: 'Com glutem' 
+    click_on 'Adicionar'
+  
 
     expect(page).to have_content('Com glutem') 
     expect(page).to have_field('Nome')  
@@ -68,10 +67,9 @@ describe 'Administrador adiciona uma nuova característica' do
     click_on 'Meus Pratos'
     click_on 'Risotto'
     click_on 'Editar'
-    within '#tag' do
-      fill_in 'Descrição', with: 'Com glutem' 
-      click_on 'Enviar'
-    end
+    fill_in 'Adicionar Carateristica', with: 'Com glutem' 
+    click_on 'Adicionar'
+
 
 
     expect(page).to have_content('Com glutem') 

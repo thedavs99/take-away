@@ -1,9 +1,14 @@
-<%= form_with(model: [@restaurant, @tag]) do |f| %>
+<div class="w-1/5">
+  <%= form_with(model: [@restaurant, @tag], class: "space-y-8 ") do |f| %>
   <div>
-    <%= f.label :description, 'Descrição' %>
-    <%= f.text_field :description %>
+    <%= f.label :description, 'Adicionar Carateristica', class: "block mb-2 text-sm font-medium text-black-900 dark:text-black-300" %>
+    <%= f.text_field :description, class: "shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 dark:shadow-sm-light" %>
   </div>
   <div>
-    <%= f.submit 'Enviar'%>
+    <%= f.submit 'Adicionar', class: "w-full text-white bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" %>
   </div>
 <% end %>
+<br>
+</div>
+
+
