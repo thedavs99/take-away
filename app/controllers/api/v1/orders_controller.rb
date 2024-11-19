@@ -69,11 +69,16 @@ class Api::V1::OrdersController < Api::V1::ApiController
     order = @restaurant.orders.find_by(code: params[:code])
     if order
       return render json: { error: 'Só é possivel aplicar a pedidos em espera de aprobação da cozinha' }, status: 422 unless order.awaiting_kitchen_confirmation?
-      order.canceled!
       order.description = params[:description]
-      order.save
-      order_json = set_json(order)
-      render status: 200, json: order_json
+      begin
+        order.canceled!
+        order.description = params[:description]
+        order.save
+        order_json = set_json(order)
+        return render status: 200, json: order_json
+      rescue      
+        render json: { error: 'Só é possivel cancelar um pedido se adicionar um motivo' }, status: 422 
+      end
     else
       render json: { error: 'Pedido não encontrado' }, status: 404
     end   

@@ -10,6 +10,8 @@ class Order < ApplicationRecord
   validate :cpf_is_valid?
   validates :name, :code, :status, presence: true
   validates :code, uniqueness: true
+  validate :status_canceled_valid?
+  validate :description_valid?
 
 
   enum status: { awaiting_kitchen_confirmation: 0, in_preparation: 2, canceled: 4, ready: 6, delivered: 8 }
@@ -21,6 +23,18 @@ class Order < ApplicationRecord
   end
   
   private
+
+  def status_canceled_valid?
+    if self.canceled? && self.description.blank?
+      errors.add(:status, 'Só é possivel atualizar o status a cancelado adicionando uma descrição') 
+    end
+  end
+
+  def description_valid?
+    unless self.canceled?
+      errors.add(:description, 'Só é possivel adicionar descrição para pedidos cancelados') if self.description
+    end
+  end
 
   def cpf_is_valid?
     unless CPF.valid?(self.cpf)
