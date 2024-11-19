@@ -32,7 +32,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
   def show
     order = @restaurant.orders.find_by(code: params[:code])
     if order
-      order_json = set_json_with_I18n(order)
+      order_json = set_json(order)
       render status: 200, json: order_json
     else
       render json: { error: 'Pedido não encontrado' }, status: 404
@@ -45,7 +45,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
       return render json: { error: 'Só é possivel aplicar a pedidos Aguardando confirmação da cozinha' }, status: 422 unless order.awaiting_kitchen_confirmation?
       order.in_preparation!
       order.save
-      order_json = set_json_with_I18n(order)
+      order_json = set_json(order)
       render status: 200, json: order_json
     else
       render json: { error: 'Pedido não encontrado' }, status: 404
@@ -58,7 +58,21 @@ class Api::V1::OrdersController < Api::V1::ApiController
       return render json: { error: 'Só é possivel aplicar a pedidos em preparação' }, status: 422 unless order.in_preparation?
       order.ready!
       order.save
-      order_json = set_json_with_I18n(order)
+      order_json = set_json(order)
+      render status: 200, json: order_json
+    else
+      render json: { error: 'Pedido não encontrado' }, status: 404
+    end   
+  end
+
+  def canceled
+    order = @restaurant.orders.find_by(code: params[:code])
+    if order
+      return render json: { error: 'Só é possivel aplicar a pedidos em espera de aprobação da cozinha' }, status: 422 unless order.awaiting_kitchen_confirmation?
+      order.canceled!
+      order.description = params[:description]
+      order.save
+      order_json = set_json(order)
       render status: 200, json: order_json
     else
       render json: { error: 'Pedido não encontrado' }, status: 404
@@ -74,7 +88,7 @@ class Api::V1::OrdersController < Api::V1::ApiController
     end
   end
 
-  def set_json_with_I18n(order)
+  def set_json(order)
     { 
       code: order.code,
       name: order.name,
@@ -83,7 +97,8 @@ class Api::V1::OrdersController < Api::V1::ApiController
       created_at: order.created_at.strftime("%d/%m/%Y"), 
       status: Order.human_enum_name(:status, order.status),
       items: set_items(order.orderable_dishes, order.orderable_beverages),
-      total: order.total
+      total: order.total,
+      description: order.description
     }
   end
 

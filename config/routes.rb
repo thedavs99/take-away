@@ -53,6 +53,7 @@ Rails.application.routes.draw do
         resources :orders, param: :code, only: [ :index, :show ] do
           post 'in_preparation', on: :member
           post 'ready', on: :member
+          post 'canceled', on: :member
         end
       end
     end
