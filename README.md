@@ -1,32 +1,31 @@
-# README
+# take-away
+Tecnologias:
+Ruby version: 3.3.5
+Node version: 16.13.0
+Rails version: 7.2.1.1
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Configuração:
+1- Abra a pasta do projeto no terminal e execute:
+'bundle install'
 
-Things you may want to cover:
+2- Crie o banco de dados e execute as migrações:
+'rails db:create db:migrate'
 
-* Ruby version
+Para executar os testes unitários, de sistema e de requisição:
+'rspec'
 
-* System dependencies
+Para testar o aplicativo do servidor execute rails db:seeds
 
-* Configuration
+1-Adicione dados no banco:
+'rails db:seed'
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# task-new
-Para ingresar como admin:
+2- Inicie o servidor:
+'rails server'
+ 
+Para ingressar como admin:
 email: 'juan@email.com'
 password: '123456789123'
 
-Para ingresar como usuario:
+Para ingressar como usuario:
 email: 'luna@email.com'
 password: '123456789123'
