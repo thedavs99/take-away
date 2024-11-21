@@ -1,70 +1,72 @@
-<%= render partial: "carts/cart" %>
+ <% if @menu.end_date.nil? || (@menu.start_date <= Date.today && @menu.end_date >= Date.today) %>
+  <%= render partial: "carts/cart" %>
 
-<section class="bg-slate-500 md:py-12">
-  <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl"><%= @menu.name %></h2>
-  <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
-    <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
-      <% @menu.dishes.where(status: :active).each do |dish| %>
-        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <div class="h-56 w-full">
-            <% if dish.image.attached? %>
-              <img src="<%= url_for(dish.image) %>" alt="Imagem" class="object-contain h-48 w-96">
-            <% end %></p>    
-          </div>
-          <div class="pt-6">
-            <p class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"><%= dish.name %></p>
-            <div class="mt-2 flex items-center gap-2">
-              <% if dish.tags.any? %>
-                <% dish.tags.each do |tag| %>                 
-                  <p class="text-sm font-medium text-gray-900 dark:text-white"> |<%= tag.description %>| </p>
+  <section class="bg-slate-500 md:py-12">
+    <h2 class="mt-3 text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl"><%= @menu.name %></h2>
+    <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
+      <div class="mb-4 grid gap-4 sm:grid-cols-2 md:mb-8 lg:grid-cols-3 xl:grid-cols-4">
+        <% @menu.dishes.where(status: :active).each do |dish| %>
+          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div class="h-56 w-full">
+              <% if dish.image.attached? %>
+                <img src="<%= url_for(dish.image) %>" alt="Imagem" class="object-contain h-48 w-96">
+              <% end %></p>    
+            </div>
+            <div class="pt-6">
+              <p class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"><%= dish.name %></p>
+              <div class="mt-2 flex items-center gap-2">
+                <% if dish.tags.any? %>
+                  <% dish.tags.each do |tag| %>                 
+                    <p class="text-sm font-medium text-gray-900 dark:text-white"> |<%= tag.description %>| </p>
+                  <% end %>
                 <% end %>
+              </div>
+              <% dish.dish_portions.each do |dish_portion|%>
+                <div class="mt-4 flex items-center justify-between gap-4" id=<%= "#{dish_portion.id}-dish" %>>
+                  <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white"><%= "#{dish_portion.description}: #{dish_portion.price} R$"%> </p>
+
+                  <%= form_with(url: add_dish_cart_path(dish_portion)) do |f| %>
+                    <%= f.hidden_field :id, value: dish_portion.id %>
+                    <%= f.number_field :quantity, class: 'w-1/2 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none' %>
+                    <%= f.submit 'Adicionar ao pedido', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
+                  <% end %>  
+                </div>
               <% end %>
             </div>
-            <% dish.dish_portions.each do |dish_portion|%>
-              <div class="mt-4 flex items-center justify-between gap-4" id=<%= "#{dish_portion.id}-dish" %>>
-                <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white"><%= "#{dish_portion.description}: #{dish_portion.price} R$"%> </p>
-
-                <%= form_with(url: add_dish_cart_path(dish_portion)) do |f| %>
-                  <%= f.hidden_field :id, value: dish_portion.id %>
-                  <%= f.number_field :quantity, class: 'w-1/2 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none' %>
-                  <%= f.submit 'Adicionar ao pedido', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
-                <% end %>  
-              </div>
-            <% end %>
           </div>
-        </div>
-      <% end %>
-      <% @menu.beverages.where(status: :active).each do |beverage| %>
-        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
-          <div class="h-56 w-full">
-            <% if beverage.image.attached? %>
-              <img src="<%= url_for(beverage.image) %>" alt="Imagem" class="object-contain h-48 w-96">
-            <% end %></p>     
-          </div>
-          <div class="pt-6">
-            <p class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"><%= beverage.name %></p>
-            <div class="mt-2 flex items-center gap-2">
+        <% end %>
+        <% @menu.beverages.where(status: :active).each do |beverage| %>
+          <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800">
+            <div class="h-56 w-full">
+              <% if beverage.image.attached? %>
+                <img src="<%= url_for(beverage.image) %>" alt="Imagem" class="object-contain h-48 w-96">
+              <% end %></p>     
             </div>
-            <% beverage.beverage_portions.each do |beverage_portion|%>
-              <div class="mt-4 flex items-center justify-between gap-4" id=<%= "#{beverage_portion.id}-beverage" %>>
-                <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white"><%= "#{beverage_portion.description}: #{beverage_portion.price} R$"%></p>
-
-                <%= form_with(url: add_beverage_cart_path(beverage_portion)) do |f| %>
-                  <%= f.hidden_field :id, value: beverage_portion.id %>
-                  <%= f.number_field :quantity, class: 'w-1/2 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none' %>
-                  <%= f.submit 'Adicionar ao pedido', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
-                <% end %>  
+            <div class="pt-6">
+              <p class="text-lg font-semibold leading-tight text-gray-900 hover:underline dark:text-white"><%= beverage.name %></p>
+              <div class="mt-2 flex items-center gap-2">
               </div>
-            <% end %>
+              <% beverage.beverage_portions.each do |beverage_portion|%>
+                <div class="mt-4 flex items-center justify-between gap-4" id=<%= "#{beverage_portion.id}-beverage" %>>
+                  <p class="text-2xl font-extrabold leading-tight text-gray-900 dark:text-white"><%= "#{beverage_portion.description}: #{beverage_portion.price} R$"%></p>
+
+                  <%= form_with(url: add_beverage_cart_path(beverage_portion)) do |f| %>
+                    <%= f.hidden_field :id, value: beverage_portion.id %>
+                    <%= f.number_field :quantity, class: 'w-1/2 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-e-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none' %>
+                    <%= f.submit 'Adicionar ao pedido', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full' %>
+                  <% end %>  
+                </div>
+              <% end %>
+            </div>
           </div>
-        </div>
-      <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
-  <%= link_to 'Editar', edit_restaurant_menu_path(@restaurant, @menu), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
-</section>
-
-
+    <%= link_to 'Editar', edit_restaurant_menu_path(@restaurant, @menu), class: "inline-flex items-center text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-900" %>
+  </section>
+<% else %>
+  <p>Menu não disponivel</p>
+<% end %>
 
 
 

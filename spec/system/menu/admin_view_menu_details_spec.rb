@@ -134,4 +134,40 @@ describe 'Administrador ve detalhes de um cardápio' do
   
     expect(current_path).to eq root_path
   end
+
+  it 'e não ve detalhes de menu expirado' do
+    travel_to(Time.zone.local(2024, 12, 10, 00, 00, 00))
+    admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
+                  email: 'david@email.com', password: '123456789123')
+    restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
+                    full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
+                    email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+    RestaurantSchedule.create!( mon_open: '08:00', mon_close: '18:00', tue_open: '08:00', tue_close: '18:00',
+                    wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
+                    fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
+                    sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
+    menu = Menu.create!(name: 'Almoço', restaurant: restaurant, start_date: '2024-10-20', end_date: '2024-11-20')
+    dish_a = Dish.create!(name: 'Risotto', description: 'Preparado com caldo de legumes, vinho branco, manteiga e queijo parmesão ralado.', 
+                calories: 174, restaurant: restaurant)
+    dish_b = Dish.create!(name: 'Ragú', description: 'suculento molho à base de carne cozida. A palavra é de origem francesa, mas a receita foi criada na Itália.',
+                calories: 177, restaurant: restaurant)
+    beverage_a = Beverage.create!(name: 'Coca-Cola', description: 'Refrigerante carbonatado vendido em lojas.', calories: 80, restaurant: restaurant)
+    beverage_b = Beverage.create!(name: 'Caipirinha', description: 'Coquetel brasileiro, de origem paulista.',  calories: 20, restaurant: restaurant)
+    Item.create!(menu: menu, beverage: beverage_a)
+    Item.create!(menu: menu, dish: dish_a)
+    Item.create!(menu: menu, beverage: beverage_b)
+    Item.create!(menu: menu, dish: dish_b)
+    BeveragePortion.create!(description: 'Lata', price: 20, beverage: beverage_a)
+    DishPortion.create!(description: 'Uma pessoa', price: 125, dish: dish_b)
+
+
+    login_as(admin, scope: :admin)
+    visit restaurant_menu_path(restaurant, menu)
+  
+    expect(page).to have_content 'Menu não disponivel'
+    expect(page).not_to have_content 'Risotto'
+    expect(page).not_to have_content 'Ragú'
+    expect(page).not_to have_content 'Coca-Cola'
+    expect(page).not_to have_content 'Caipirinha'
+  end
 end

@@ -7,3 +7,5 @@ pt-BR:
         name: 'Nome'
         dish_ids: 'Pratos'
         beverage_ids: 'Bebidas'
+        start_date: 'Data de Inicio'
+        end_date: 'Data de Fechamento'

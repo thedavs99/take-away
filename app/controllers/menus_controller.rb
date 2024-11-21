@@ -37,7 +37,7 @@ class MenusController < ApplicationController
 
   private
   def menu_params
-    params.require(:menu).permit(:name, dish_ids: [], beverage_ids: [])
+    params.require(:menu).permit(:name, :start_date, :end_date, dish_ids: [], beverage_ids: [])
   end
 
   def authenticate_admin_or_user

@@ -10,11 +10,13 @@
     </thead>
     <tbody>
       <% @menus.each do |menu| %>
-        <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-          <td class="px-6 py-4">
-            <%= link_to menu.name, restaurant_menu_path(@restaurant, menu), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %>
-          </td>             
-        </tr>
+        <% if menu.end_date.nil? || (menu.start_date <= Date.today && menu.end_date >= Date.today) %>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+            <td class="px-6 py-4">
+              <%= link_to menu.name, restaurant_menu_path(@restaurant, menu), class: "font-medium text-blue-600 dark:text-blue-500 hover:underline" %> 
+            </td>             
+          </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>     

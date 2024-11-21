@@ -52,4 +52,48 @@ describe 'Administrador ve lista de cardapios' do
     expect(page).to have_content 'Almoço'
     expect(page).not_to have_content 'Café da manhã'
   end
+
+  it 'e ve cardapios sazonais' do
+    travel_to(Time.zone.local(2024, 11, 15, 00, 00, 00))
+    admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
+                  email: 'david@email.com', password: '123456789123')
+    restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
+                    full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
+                    email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+    RestaurantSchedule.create!( mon_open: '08:00', mon_close: '18:00', tue_open: '08:00', tue_close: '18:00',
+                    wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
+                    fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
+                    sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
+    Menu.create!(name: 'Almoço', restaurant: restaurant, start_date: '2024-10-20', end_date: '2024-11-20')
+    Menu.create!(name: 'Café da manhã', restaurant: restaurant)
+
+
+    login_as(admin, scope: :admin)
+    visit root_path
+
+    expect(page).to have_content 'Almoço'
+    expect(page).to have_content 'Café da manhã'
+  end
+
+  it 'e não cardapios sazonais expirados' do
+    travel_to(Time.zone.local(2024, 12, 10, 00, 00, 00))
+    admin = Admin.create!(name: 'David', last_name: 'Martinez', cpf: '12223111190', 
+                  email: 'david@email.com', password: '123456789123')
+    restaurant = Restaurant.create!(corporate_name: "McDonald's Curitiba", brand_name: "McDonald's", cnpj: 26219781000101, 
+                    full_address: 'Av. Presidente Affonso Camargo, 10 - Rebouças, Curitiba - PR, 80060-090', 
+                    email: 'contato@mcdonaldcr.com' ,telephone_number: 11999695714, admin: admin)
+    RestaurantSchedule.create!( mon_open: '08:00', mon_close: '18:00', tue_open: '08:00', tue_close: '18:00',
+                    wed_open: '08:00', wed_close: '18:00', thu_open: '08:00', thu_close: '18:00',
+                    fri_open: '08:00', fri_close: '18:00', sat_open: '08:00', sat_close: '18:00',
+                    sun_open: '08:00', sun_close: '18:00', restaurant: restaurant)
+    Menu.create!(name: 'Almoço', restaurant: restaurant, start_date: '2024-10-20', end_date: '2024-11-20')
+    Menu.create!(name: 'Café da manhã', restaurant: restaurant)
+
+
+    login_as(admin, scope: :admin)
+    visit root_path
+
+    expect(page).not_to have_content 'Almoço'
+    expect(page).to have_content 'Café da manhã'
+  end
 end
